@@ -1,15 +1,31 @@
 package com.lucek.androidgameengine2d.graphics;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+/**
+ * Created by lukas on 12.10.2016.
+ */
 
-import com.lucek.androidgameengine2d.R;
+public class Window {
 
-public class Window extends AppCompatActivity {
+    public int m_Width,m_Height;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public Window() {
+
     }
+
+    public void setWidth(int width){
+        this.m_Width = width;
+    }
+
+    public void setHeight(int height){
+        this.m_Height = height;
+    }
+
+    public int getWidth(){
+        return this.m_Width;
+    }
+
+    public int getHeight(){
+        return this.m_Height;
+    }
+
 }
