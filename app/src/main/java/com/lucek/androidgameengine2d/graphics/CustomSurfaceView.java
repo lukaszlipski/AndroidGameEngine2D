@@ -12,7 +12,7 @@ public class CustomSurfaceView extends GLSurfaceView {
 
     public CustomSurfaceView(Context ctx) {
         super(ctx);
-
+        Shader.ctx = ctx;
         setEGLContextClientVersion(2);
         m_Renderer = new SimpleRenderer();
 

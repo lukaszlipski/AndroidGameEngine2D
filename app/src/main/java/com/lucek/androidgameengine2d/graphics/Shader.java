@@ -13,8 +13,10 @@ import com.lucek.androidgameengine2d.extra.FileReader;
 public class Shader {
 
     private int m_ProgramID;
+    static public Context ctx;
 
-    public Shader(Context ctx,int idVertexShader, int idFragmentShader) {
+
+    public Shader(int idVertexShader, int idFragmentShader) {
         int vShader = this.loadShader(GLES20.GL_VERTEX_SHADER, FileReader.readFromResource(ctx,idVertexShader) );
         int fShader = this.loadShader(GLES20.GL_FRAGMENT_SHADER, FileReader.readFromResource(ctx, idFragmentShader) );
 
