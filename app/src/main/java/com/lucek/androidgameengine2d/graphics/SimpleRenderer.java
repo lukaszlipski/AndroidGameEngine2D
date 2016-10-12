@@ -18,6 +18,7 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+
         GLES20.glClearColor(3.0f/255,169.0f/255,244.0f/255,1);
         window = new Window();
         main = new Main(window);
@@ -26,13 +27,19 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
+
         GLES20.glViewport(0,0,width,height);
         this.window.setHeight(height);
         this.window.setWidth(width);
+
+        this.window.setProjectionMatrix();
+        this.window.setViewMatrix();
+        this.window.calcVPMatrix();
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
+
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         main.Update();
     }

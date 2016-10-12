@@ -41,7 +41,7 @@ public class Circle extends BasicEntity {
     }
 
 
-    public void draw(Shader shader){
+    public void draw(Shader shader,float[] VPMatrix){
 
         GLES20.glUseProgram(shader.GetProgramID());
         int attrib = GLES20.glGetAttribLocation(shader.GetProgramID(),"vPosition");
@@ -52,9 +52,11 @@ public class Circle extends BasicEntity {
         int color = GLES20.glGetUniformLocation(shader.GetProgramID(),"vColor");
         GLES20.glUniform4fv(color,1,this.getColors(),0);
 
-        GLES20.glDrawElements(
-                GLES20.GL_TRIANGLES, drawOrder.length,
-                GLES20.GL_UNSIGNED_SHORT, ibo);
+        int handle_mvpM = GLES20.glGetUniformLocation(shader.GetProgramID(),"u_MVPMatrix");
+        GLES20.glUniformMatrix4fv(handle_mvpM, 1, false, VPMatrix, 0);
+
+
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, ibo);
     }
 
     private float[] calculateCoords(int cuts){

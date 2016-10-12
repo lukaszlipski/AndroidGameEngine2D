@@ -19,10 +19,12 @@ public class Main {
 
     // object m_Window keeps width and height of screen
     private Window m_Window;
+
+    // --- TEST ---
     private Square sqr;
     private Circle circle;
     private Shader shr;
-
+    // -----------
 
     public Main(Window win) {
         m_Window = win;
@@ -43,7 +45,7 @@ public class Main {
         // updated every frame
 
         //sqr.draw(shr);
-        circle.draw(shr);
+        circle.draw(shr,this.m_Window.getVPMatrix());
 
     }
 
