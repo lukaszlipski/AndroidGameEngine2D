@@ -21,6 +21,7 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glClearColor(3.0f/255,169.0f/255,244.0f/255,1);
         window = new Window();
+
         main = new Main(window);
         main.Create();
     }
@@ -32,9 +33,11 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
         this.window.setHeight(height);
         this.window.setWidth(width);
 
-        this.window.setProjectionMatrix();
-        this.window.setViewMatrix();
-        this.window.calcVPMatrix();
+        //this.window.setProjectionMatrix();
+        //this.window.camera.setViewMatrix();
+        //this.window.calcVPMatrix();
+        this.window.getCamera().setProjectionMatrix(false,width,height);
+
     }
 
     @Override

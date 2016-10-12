@@ -27,8 +27,8 @@ public class Square extends BasicEntity {
     static private short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
 
 
-    public Square(int x,int y,float[] colors) {
-        super(x,y,colors);
+    public Square(float  x,float y,float z, float[] colors) {
+        super(x,y,z,colors);
 
         ByteBuffer bb = ByteBuffer.allocateDirect(this.squareCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
@@ -55,9 +55,7 @@ public class Square extends BasicEntity {
         int color = GLES20.glGetUniformLocation(shader.GetProgramID(),"vColor");
         GLES20.glUniform4fv(color,1,this.getColors(),0);
 
-        GLES20.glDrawElements(
-                GLES20.GL_TRIANGLES, drawOrder.length,
-                GLES20.GL_UNSIGNED_SHORT, ibo);
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length,GLES20.GL_UNSIGNED_SHORT, ibo);
     }
 
 }

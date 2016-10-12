@@ -1,7 +1,9 @@
 package com.lucek.androidgameengine2d.entities;
 
 import android.opengl.GLES20;
+import android.opengl.Matrix;
 
+import com.lucek.androidgameengine2d.graphics.Camera;
 import com.lucek.androidgameengine2d.graphics.Shader;
 
 import java.nio.ByteBuffer;
@@ -20,12 +22,11 @@ public class Circle extends BasicEntity {
 
     static private short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
 
-    public Circle(int x,int y,float[] colors,int cuts){
-        super(x,y,colors);
+    public Circle(float x,float y,float z,float[] colors,int cuts, float radius){
+        super(x,y,z,colors);
 
-        float[] circleCoors = this.calculateCoords(cuts);
+        float[] circleCoors = this.calculateCoords(cuts,radius);
         this.drawOrder = this.calculateDrawOrder(cuts);
-        // TODO: make it
 
         ByteBuffer bb = ByteBuffer.allocateDirect(circleCoors.length * 4);
         bb.order(ByteOrder.nativeOrder());
@@ -41,7 +42,7 @@ public class Circle extends BasicEntity {
     }
 
 
-    public void draw(Shader shader,float[] VPMatrix){
+    public void draw(Shader shader,Camera camera){
 
         GLES20.glUseProgram(shader.GetProgramID());
         int attrib = GLES20.glGetAttribLocation(shader.GetProgramID(),"vPosition");
@@ -52,14 +53,17 @@ public class Circle extends BasicEntity {
         int color = GLES20.glGetUniformLocation(shader.GetProgramID(),"vColor");
         GLES20.glUniform4fv(color,1,this.getColors(),0);
 
+        float mvpMatrix[] = new float[16];
+        Matrix.multiplyMM(mvpMatrix,0,camera.getVPMatrix(),0,this.getModelMatrix(),0);
+
         int handle_mvpM = GLES20.glGetUniformLocation(shader.GetProgramID(),"u_MVPMatrix");
-        GLES20.glUniformMatrix4fv(handle_mvpM, 1, false, VPMatrix, 0);
+        GLES20.glUniformMatrix4fv(handle_mvpM, 1, false, mvpMatrix, 0);
 
 
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, ibo);
     }
 
-    private float[] calculateCoords(int cuts){
+    private float[] calculateCoords(int cuts,float radius){
 
         float[] circleCoords = new float[cuts*3+6];
 
@@ -70,8 +74,8 @@ public class Circle extends BasicEntity {
         double jump = 2*3.14/cuts;
         double j =0;
         for(int i=3;i<=cuts*3;i+=3,j+=jump){
-            circleCoords[i] = (float)Math.cos(j);
-            circleCoords[i+1] = (float)Math.sin(j);
+            circleCoords[i] = (float)Math.cos(j)*radius;
+            circleCoords[i+1] = (float)Math.sin(j)*radius;
             circleCoords[i+2] = 0;
         }
 

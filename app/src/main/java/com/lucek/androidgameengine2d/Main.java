@@ -6,6 +6,7 @@ import com.lucek.androidgameengine2d.entities.BasicEntity;
 import com.lucek.androidgameengine2d.entities.Circle;
 import com.lucek.androidgameengine2d.entities.Square;
 import com.lucek.androidgameengine2d.extra.MaterialColors;
+import com.lucek.androidgameengine2d.graphics.Camera;
 import com.lucek.androidgameengine2d.graphics.Shader;
 import com.lucek.androidgameengine2d.graphics.Window;
 
@@ -36,7 +37,7 @@ public class Main {
         float colors[] = MaterialColors.Purple();
 
         //sqr = new Square(2,2,colors);
-        circle = new Circle(2,2, colors,32);
+        circle = new Circle(0,-200,0, colors,32,100);
         shr = new Shader(R.raw.vshader,R.raw.fshader);
 
     }
@@ -45,7 +46,8 @@ public class Main {
         // updated every frame
 
         //sqr.draw(shr);
-        circle.draw(shr,this.m_Window.getVPMatrix());
+        circle.draw(shr,this.m_Window.getCamera());
+        circle.transform(this.m_Window.getWidth()/2,this.m_Window.getHeight()/2,2);
 
     }
 
