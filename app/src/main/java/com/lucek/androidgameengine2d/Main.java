@@ -1,6 +1,8 @@
 package com.lucek.androidgameengine2d;
 
 import android.opengl.GLES20;
+import android.text.InputType;
+import android.util.Log;
 
 import com.lucek.androidgameengine2d.entities.BasicEntity;
 import com.lucek.androidgameengine2d.entities.Circle;
@@ -9,6 +11,7 @@ import com.lucek.androidgameengine2d.extra.MaterialColors;
 import com.lucek.androidgameengine2d.graphics.Camera;
 import com.lucek.androidgameengine2d.graphics.Shader;
 import com.lucek.androidgameengine2d.graphics.Window;
+import com.lucek.androidgameengine2d.input.TouchInput;
 
 import java.util.ArrayList;
 
@@ -49,9 +52,11 @@ public class Main {
     public void Update(){
         // updated every frame
 
-        circle.transform(this.m_Window.getWidth()/2,this.m_Window.getHeight()/2,2);
+        //circle.transform(this.m_Window.getWidth()/2,this.m_Window.getHeight()/2,2);
         circle.draw(this.m_Window.getCamera());
         sqr.draw(this.m_Window.getCamera());
+
+        circle.transform(TouchInput.getPositionX(),TouchInput.getPositionY(),0);
     }
 
 

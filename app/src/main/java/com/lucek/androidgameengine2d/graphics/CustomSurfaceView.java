@@ -2,6 +2,10 @@ package com.lucek.androidgameengine2d.graphics;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.text.method.Touch;
+import android.view.MotionEvent;
+
+import com.lucek.androidgameengine2d.input.TouchInput;
 
 /**
  * Created by lukas on 11.10.2016.
@@ -9,6 +13,15 @@ import android.opengl.GLSurfaceView;
 public class CustomSurfaceView extends GLSurfaceView {
 
     private SimpleRenderer m_Renderer;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+
+        TouchInput.setPositionX(e.getX());
+        TouchInput.setPositionY(e.getY());
+
+        return true;
+    }
 
     public CustomSurfaceView(Context ctx) {
         super(ctx);
@@ -20,4 +33,6 @@ public class CustomSurfaceView extends GLSurfaceView {
 
     }
 
-}
+
+
+    }
