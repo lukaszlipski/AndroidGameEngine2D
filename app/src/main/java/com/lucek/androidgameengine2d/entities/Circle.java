@@ -22,8 +22,18 @@ public class Circle extends BasicEntity {
 
     static private short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
 
-    public Circle(float x,float y,float z,float[] colors,int cuts, float radius){
-        super(x,y,z,colors);
+    /**
+     * Creates circle at origin x,y,z
+     * @param x - default position of origin x
+     * @param y - default position of origin y
+     * @param z - default position of origin z
+     * @param radius - default radius of the circle
+     * @param shader - default shader
+     * @param colors - float array of 4 elements {r,g,b,a} of values between 0 and 1
+     * @param cuts - for how many triangles it should be cut
+     */
+    public Circle(float x,float y,float z,float radius,Shader shader,float[] colors,int cuts){
+        super(x,y,z,shader,colors);
 
         float[] circleCoors = this.calculateCoords(cuts,radius);
         this.drawOrder = this.calculateDrawOrder(cuts);
@@ -41,22 +51,25 @@ public class Circle extends BasicEntity {
         ibo.position(0);
     }
 
+    /**
+     * Basic function for drawing element on surface
+     * @param camera - camera of class Camera for information of view and perspective matrix
+     */
+    public void draw(Camera camera){
 
-    public void draw(Shader shader,Camera camera){
-
-        GLES20.glUseProgram(shader.GetProgramID());
-        int attrib = GLES20.glGetAttribLocation(shader.GetProgramID(),"vPosition");
+        GLES20.glUseProgram(this.getShader().GetProgramID());
+        int attrib = GLES20.glGetAttribLocation(this.getShader().GetProgramID(),"vPosition");
         GLES20.glEnableVertexAttribArray(attrib);
 
         GLES20.glVertexAttribPointer(attrib,3,GLES20.GL_FLOAT,false,3*4,vbo);
 
-        int color = GLES20.glGetUniformLocation(shader.GetProgramID(),"vColor");
+        int color = GLES20.glGetUniformLocation(this.getShader().GetProgramID(),"vColor");
         GLES20.glUniform4fv(color,1,this.getColors(),0);
 
         float mvpMatrix[] = new float[16];
         Matrix.multiplyMM(mvpMatrix,0,camera.getVPMatrix(),0,this.getModelMatrix(),0);
 
-        int handle_mvpM = GLES20.glGetUniformLocation(shader.GetProgramID(),"u_MVPMatrix");
+        int handle_mvpM = GLES20.glGetUniformLocation(this.getShader().GetProgramID(),"u_MVPMatrix");
         GLES20.glUniformMatrix4fv(handle_mvpM, 1, false, mvpMatrix, 0);
 
 

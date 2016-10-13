@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    // object m_Window keeps width and height of screen
+    // object m_Window keeps width and height of screen and Camera
     private Window m_Window;
 
     // --- TEST ---
@@ -35,20 +35,23 @@ public class Main {
         // when context is created
 
         float colors[] = MaterialColors.Purple();
+        float colors2[] = MaterialColors.Lime();
 
-        //sqr = new Square(2,2,colors);
-        circle = new Circle(0,-200,0, colors,32,100);
+        // Default Shader
         shr = new Shader(R.raw.vshader,R.raw.fshader);
+
+        // Entities
+        sqr = new Square(400,500,0,100,shr,colors2);
+        circle = new Circle(0,-200,0,100,shr,colors,32);
 
     }
 
     public void Update(){
         // updated every frame
 
-        //sqr.draw(shr);
-        circle.draw(shr,this.m_Window.getCamera());
         circle.transform(this.m_Window.getWidth()/2,this.m_Window.getHeight()/2,2);
-
+        circle.draw(this.m_Window.getCamera());
+        sqr.draw(this.m_Window.getCamera());
     }
 
 

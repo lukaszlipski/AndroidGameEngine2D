@@ -24,6 +24,12 @@ public class Camera {
     private float[] m_ProjectionMatrix;
     private float[] m_VPMatrix;
 
+    /**
+     * Camera for controlling view of world
+     * @param pos - array of 3 float elements which defines where camera is at
+     * @param look - array of 3 float elements which defines where camera look at
+     * @param up - array of 3 float elements which defines where is up for camera (standard is [0,1,0])
+     */
     Camera(float[] pos, float[] look, float[] up){
         this.m_ProjectionMatrix = new float[16];
         Matrix.setIdentityM(this.m_ProjectionMatrix,0);
@@ -40,6 +46,12 @@ public class Camera {
                 this.m_UpX, this.m_UpY, this.m_UpZ);
     }
 
+    /**
+     * Set projection matrix for specified width and height
+     * @param perspective TRUE = perspective, FALSE = orthographic
+     * @param width - width of surface
+     * @param height - height of surface
+     */
     public void setProjectionMatrix(Boolean perspective,float width,float height){
         // TODO: !!!!!!!! Check why x is inversed !!!!!!!
         if(perspective)
