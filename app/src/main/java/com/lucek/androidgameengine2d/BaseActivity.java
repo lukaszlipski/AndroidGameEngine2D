@@ -3,7 +3,7 @@ package com.lucek.androidgameengine2d;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.lucek.androidgameengine2d.graphics.CustomSurfaceView;
+import com.lucek.androidgameengine2d.core.graphics.CustomSurfaceView;
 
 public class BaseActivity extends AppCompatActivity {
 

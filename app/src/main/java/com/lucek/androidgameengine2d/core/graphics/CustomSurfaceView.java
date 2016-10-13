@@ -1,11 +1,10 @@
-package com.lucek.androidgameengine2d.graphics;
+package com.lucek.androidgameengine2d.core.graphics;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.text.method.Touch;
 import android.view.MotionEvent;
 
-import com.lucek.androidgameengine2d.input.TouchInput;
+import com.lucek.androidgameengine2d.core.input.TouchInput;
 
 /**
  * Created by lukas on 11.10.2016.

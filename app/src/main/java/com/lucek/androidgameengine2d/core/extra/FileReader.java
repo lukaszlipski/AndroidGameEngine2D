@@ -1,4 +1,4 @@
-package com.lucek.androidgameengine2d.extra;
+package com.lucek.androidgameengine2d.core.extra;
 
 import android.content.Context;
 

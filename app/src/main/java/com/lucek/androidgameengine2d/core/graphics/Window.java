@@ -1,6 +1,4 @@
-package com.lucek.androidgameengine2d.graphics;
-
-import android.opengl.Matrix;
+package com.lucek.androidgameengine2d.core.graphics;
 
 /**
  * Created by lukas on 12.10.2016.

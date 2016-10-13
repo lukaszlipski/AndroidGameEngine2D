@@ -1,10 +1,10 @@
-package com.lucek.androidgameengine2d.graphics;
+package com.lucek.androidgameengine2d.core.graphics;
 
 import android.content.Context;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import com.lucek.androidgameengine2d.extra.FileReader;
+import com.lucek.androidgameengine2d.core.extra.FileReader;
 
 /**
  * Created by lukas on 12.10.2016.

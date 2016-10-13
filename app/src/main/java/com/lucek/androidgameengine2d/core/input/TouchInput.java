@@ -1,4 +1,4 @@
-package com.lucek.androidgameengine2d.input;
+package com.lucek.androidgameengine2d.core.input;
 
 /**
  * Created by lukas on 13.10.2016.

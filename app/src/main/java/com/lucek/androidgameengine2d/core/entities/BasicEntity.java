@@ -1,8 +1,8 @@
-package com.lucek.androidgameengine2d.entities;
+package com.lucek.androidgameengine2d.core.entities;
 
 import android.opengl.Matrix;
 
-import com.lucek.androidgameengine2d.graphics.Shader;
+import com.lucek.androidgameengine2d.core.graphics.Shader;
 
 /**
  * Created by lukas on 12.10.2016.

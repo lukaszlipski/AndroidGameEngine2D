@@ -1,4 +1,4 @@
-package com.lucek.androidgameengine2d.graphics;
+package com.lucek.androidgameengine2d.core.graphics;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -33,18 +33,13 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
         this.window.setHeight(height);
         this.window.setWidth(width);
 
-        //this.window.setProjectionMatrix();
-        //this.window.camera.setViewMatrix();
-        //this.window.calcVPMatrix();
         this.window.getCamera().setProjectionMatrix(false,width,height);
 
+        main.OnWindowChange();
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
-
-
-
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         main.Update();
     }

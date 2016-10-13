@@ -1,4 +1,4 @@
-package com.lucek.androidgameengine2d.extra;
+package com.lucek.androidgameengine2d.core.extra;
 
 /**
  * Created by lukas on 12.10.2016.
@@ -19,6 +19,10 @@ public class MaterialColors {
     }
     public static float[] Purple(){
         float[] purple = {156.0f/255,39.0f/255,176.0f/255,1};
+        return purple;
+    }
+    public static float[] Black(){
+        float[] purple = {33.0f/255,33.0f/255,33.0f/255,1};
         return purple;
     }
 }

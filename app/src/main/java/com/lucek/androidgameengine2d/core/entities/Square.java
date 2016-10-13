@@ -1,10 +1,10 @@
-package com.lucek.androidgameengine2d.entities;
+package com.lucek.androidgameengine2d.core.entities;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import com.lucek.androidgameengine2d.graphics.Camera;
-import com.lucek.androidgameengine2d.graphics.Shader;
+import com.lucek.androidgameengine2d.core.graphics.Camera;
+import com.lucek.androidgameengine2d.core.graphics.Shader;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
