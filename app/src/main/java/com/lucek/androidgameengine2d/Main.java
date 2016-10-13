@@ -6,6 +6,7 @@ import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.core.input.TouchInput;
+import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
 /**
@@ -30,10 +31,20 @@ public class Main {
         // when context is created
 
         // Default Shader
+
         shr = new Shader(R.raw.vshader,R.raw.fshader);
 
         // Map
         map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
+
+        for(int y=0;y<9;y++) {
+            for(int x=0;x<9;x++){
+                if(y%2==0)
+                    map.setField(x,y, Field.BLACK);
+                else
+                    map.setField(x,y,Field.WHITE);
+            }
+        }
 
 
 
@@ -46,8 +57,6 @@ public class Main {
 
     public void Update(){
         // updated every frame
-
-
 
 
         // draw every pawns

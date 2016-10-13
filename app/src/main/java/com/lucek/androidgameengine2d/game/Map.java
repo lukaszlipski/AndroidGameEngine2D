@@ -1,5 +1,7 @@
 package com.lucek.androidgameengine2d.game;
 
+import android.util.DisplayMetrics;
+
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
 
@@ -17,24 +19,33 @@ public class Map {
     private float i;
     private float s;
     private Window m_Win;
+    private float[] m_colorWhite;
+    private float[] m_colorBlack;
+    private Shader m_Shader;
 
     /**
-     * Map with cuts x cuts fields eg (9x9 for NoGo)
-     * @param cuts - how many cuts for map
-     * @param window - main window of game
+     *
+     * @param colorWhite
+     * @param colorBlack
+     * @param cuts
+     * @param window
+     * @param shader
      */
     public Map(float[] colorWhite, float[] colorBlack, int cuts, Window window,Shader shader){
 
+        m_colorWhite = colorWhite;
+        m_colorBlack = colorBlack;
+        m_Shader = shader;
         Fields = new Field[cuts][cuts];
 
-        this.UpdateMap(window).clearMap();
-        m_PawnW = new Pawn(colorWhite,shader,50);
-        m_PawnB = new Pawn(colorBlack,shader,50);
         this.m_cuts = cuts;
-
+        //this.UpdateMap(window).clearMap();
+        m_PawnW = new Pawn(m_colorWhite,m_Shader,10);
+        m_PawnB = new Pawn(m_colorBlack,m_Shader,10);
     }
 
     public Map UpdateMap(Window window){
+
         this.m_Win = window;
 
         this.h = Math.min(window.getWidth(),window.getHeight());
@@ -44,6 +55,8 @@ public class Map {
         else
             this.s = (window.getWidth() - (this.i*this.m_cuts))/2;
 
+        m_PawnW = new Pawn(m_colorWhite,m_Shader,this.i/2);
+        m_PawnB = new Pawn(m_colorBlack,m_Shader,this.i/2);
         return this;
     }
 
@@ -81,20 +94,41 @@ public class Map {
 
     public Map draw(){
 
-//        for(int y=0;y<Fields.length;y++) {
-//            for(int x=0;x<Fields[0].length;x++){
-//                if(Fields[y][x] != Field.EMPTY){
-//
-//
-//
-//                }
-//            }
-//        }
+        for(int y=0;y<Fields.length;y++) {
+            for(int x=0;x<Fields[0].length;x++){
+                if(Fields[y][x] != Field.EMPTY){
 
-        m_PawnB.setPosition(this.m_Win.getWidth()/2,this.m_Win.getHeight()/2,2);
-        m_PawnB.draw(this.m_Win);
+                    if(Fields[y][x] == Field.WHITE)
+                    {
+                        m_PawnW.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
+                        m_PawnW.draw(this.m_Win);
+                    }
+
+                    if(Fields[y][x] == Field.BLACK)
+                    {
+                        m_PawnB.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
+                        m_PawnB.draw(this.m_Win);
+                    }
+
+                }
+            }
+        }
 
         return this;
+    }
+
+    private float calcPositionX(int column){
+        if(this.h == m_Win.getWidth())
+            return this.i + (column * this.i);
+        else
+            return this.s + (column * this.i);
+    }
+
+    private float calcPositionY(int row){
+        if(this.h == m_Win.getWidth())
+            return this.s + (row * this.i);
+        else
+            return this.i + (row * this.i);
     }
 
 
