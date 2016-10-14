@@ -91,4 +91,9 @@ public class BasicEntity {
         Matrix.translateM(m_ModelMatrix,0,m_ModelMatrix,0,m_PositionX,m_PositionY,m_PositionZ);
     }
 
+    public void scale(float x,float y,float z)
+    {
+        Matrix.scaleM(m_ModelMatrix,0,x,y,z);
+    }
+
 }

@@ -1,9 +1,11 @@
 package com.lucek.androidgameengine2d.game;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
+import com.lucek.androidgameengine2d.core.input.TouchInput;
 
 /**
  * Created by lukas on 13.10.2016.
@@ -24,22 +26,22 @@ public class Map {
     private Shader m_Shader;
 
     /**
-     *
-     * @param colorWhite
-     * @param colorBlack
-     * @param cuts
-     * @param window
-     * @param shader
+     * Creates map witch cuts x cuts areas
+     * @param colorWhite - white color (array of 4 float values between 0 and 1)
+     * @param colorBlack - black color (array of 4 float values between 0 and 1)
+     * @param cuts - how many areas
+     * @param window - handle of window
+     * @param shader - basic shader
      */
     public Map(float[] colorWhite, float[] colorBlack, int cuts, Window window,Shader shader){
-
+        
         m_colorWhite = colorWhite;
         m_colorBlack = colorBlack;
         m_Shader = shader;
         Fields = new Field[cuts][cuts];
 
         this.m_cuts = cuts;
-        //this.UpdateMap(window).clearMap();
+        this.UpdateMap(window).clearMap();
         m_PawnW = new Pawn(m_colorWhite,m_Shader,10);
         m_PawnB = new Pawn(m_colorBlack,m_Shader,10);
     }
@@ -49,14 +51,14 @@ public class Map {
         this.m_Win = window;
 
         this.h = Math.min(window.getWidth(),window.getHeight());
-        this.i = h/(this.m_cuts+2);
+        this.i = h/(this.m_cuts+1);
         if(this.h == window.getWidth())
             this.s = (window.getHeight() - (this.i*this.m_cuts))/2;
         else
             this.s = (window.getWidth() - (this.i*this.m_cuts))/2;
 
-        m_PawnW = new Pawn(m_colorWhite,m_Shader,this.i/2);
-        m_PawnB = new Pawn(m_colorBlack,m_Shader,this.i/2);
+        m_PawnW = new Pawn(m_colorWhite,m_Shader,this.i/3);
+        m_PawnB = new Pawn(m_colorBlack,m_Shader,this.i/3);
         return this;
     }
 
@@ -72,13 +74,13 @@ public class Map {
         return this;
     }
 
-    public Field checkField(int pos[], Field field){
+    public Field getField(int pos[]){
         int x = pos[0];
         int y = pos[1];
         return this.Fields[y][x];
     }
 
-    public Field checkField(int x, int y, Field field){
+    public Field getField(int x, int y){
         return this.Fields[y][x];
     }
 
@@ -104,10 +106,22 @@ public class Map {
                         m_PawnW.draw(this.m_Win);
                     }
 
+                    if(Fields[y][x] == Field.WHITE_MARK)
+                    {
+                        m_PawnW.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
+                        m_PawnW.drawCheck(this.m_Win);
+                    }
+
                     if(Fields[y][x] == Field.BLACK)
                     {
                         m_PawnB.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
                         m_PawnB.draw(this.m_Win);
+                    }
+
+                    if(Fields[y][x] == Field.BLACK_MARK)
+                    {
+                        m_PawnB.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
+                        m_PawnB.drawCheck(this.m_Win);
                     }
 
                 }
@@ -130,6 +144,31 @@ public class Map {
         else
             return this.i + (row * this.i);
     }
+
+    public int convertFromCoordsToColRowX(float x){
+        int newX;
+        if(this.h == m_Win.getWidth())
+            newX = (int)((x - this.i + this.i/3)/this.i);
+        else
+            newX = (int)((x - this.s + this.i/3)/this.i);
+        if(newX >=0 && newX < this.m_cuts)
+            return newX;
+        else
+            return -1;
+    }
+
+    public int convertFromCoordsToColRowY(float y){
+        int newY;
+        if(this.h == m_Win.getWidth())
+            newY = (int)((y - this.s + this.i/3)/this.i);
+        else
+            newY =  (int) ((y - this.i + this.i/3) / this.i);
+        if(newY >=0 && newY < this.m_cuts)
+            return newY;
+        else
+            return -1;
+    }
+
 
 
 }

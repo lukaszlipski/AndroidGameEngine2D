@@ -7,5 +7,7 @@ package com.lucek.androidgameengine2d.game;
 public enum Field {
     EMPTY,
     BLACK,
-    WHITE
+    WHITE,
+    BLACK_MARK,
+    WHITE_MARK
 }
