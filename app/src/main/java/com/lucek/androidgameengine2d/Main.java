@@ -3,6 +3,7 @@ package com.lucek.androidgameengine2d;
 import android.text.InputType;
 
 import com.lucek.androidgameengine2d.core.entities.Circle;
+import com.lucek.androidgameengine2d.core.entities.Line;
 import com.lucek.androidgameengine2d.core.entities.Square;
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
@@ -24,6 +25,10 @@ public class Main {
     private Map map;
     private Shader shr;
     // -------------
+
+    // --- TEST ---
+    private Line line;
+    // ------------
 
 
     public Main(Window win) {
@@ -49,7 +54,7 @@ public class Main {
 //                    map.setField(x,y,Field.WHITE);
 //            }
 //        }
-
+        line = new Line(0,0,0,100,20,shr,MaterialColors.Purple());
         //map.setField(0,0,Field.BLACK_MARK);
 
         // ------------------------
@@ -73,6 +78,8 @@ public class Main {
 
         // draw every pawns
         map.draw();
+        line.transform(200,500,0);
+        line.draw(m_Window.getCamera());
     }
 
 
