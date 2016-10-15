@@ -29,25 +29,6 @@ public class BasicEntity {
         float position[] = {m_PositionX,m_PositionY,m_PositionZ,0};
 
         Matrix.translateM(m_ModelMatrix,0,m_ModelMatrix,0,m_PositionX,m_PositionY,m_PositionZ);
-        //Matrix.multiplyMV(m_ModelMatrix,0,m_ModelMatrix,0,position,0);
-    }
-
-    public void setPositionX(int x){
-        this.m_PositionX = x;
-    }
-
-    public void setPositionY(int y){
-        this.m_PositionY = y;
-    }
-
-    public void setPositionZ(int z){
-        this.m_PositionZ = z;
-    }
-
-    public void setPosition(float[] positions){
-        this.m_PositionX = positions[0];
-        this.m_PositionY = positions[1];
-        this.m_PositionZ = positions[2];
     }
 
     public float getPositionX(){
@@ -83,7 +64,7 @@ public class BasicEntity {
         return this.m_ModelMatrix;
     }
 
-    public void transform(float x,float y, float z){
+    public void setPosition(float x,float y, float z){
         Matrix.setIdentityM(m_ModelMatrix,0);
         this.m_PositionX = x;
         this.m_PositionY = y;
@@ -91,7 +72,7 @@ public class BasicEntity {
         Matrix.translateM(m_ModelMatrix,0,m_ModelMatrix,0,m_PositionX,m_PositionY,m_PositionZ);
     }
 
-    public void rotate(float angle){
+    public void setRotation(float angle){
         Matrix.rotateM(m_ModelMatrix,0,angle,0,0,1);
     }
 

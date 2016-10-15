@@ -1,13 +1,10 @@
 package com.lucek.androidgameengine2d.game;
 
-import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.lucek.androidgameengine2d.core.entities.Line;
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
-import com.lucek.androidgameengine2d.core.input.TouchInput;
 
 /**
  * Created by lukas on 13.10.2016.
@@ -18,6 +15,7 @@ public class Map {
 
     private Field[][] Fields;
     private Pawn m_PawnW,m_PawnB;
+    private Pawn m_PawnE;
     private Line m_Line;
     private int m_cuts;
     private float h;
@@ -47,6 +45,7 @@ public class Map {
         this.UpdateMap(window).clearMap();
         m_PawnW = new Pawn(m_colorWhite,m_Shader,10);
         m_PawnB = new Pawn(m_colorBlack,m_Shader,10);
+        m_PawnE = new Pawn(MaterialColors.Marked(),m_Shader,10);
 
         m_Line = new Line(0,0,0,1,1,m_Shader, MaterialColors.Black());
     }
@@ -64,6 +63,7 @@ public class Map {
 
         m_PawnW = new Pawn(m_colorWhite,m_Shader,this.i/3);
         m_PawnB = new Pawn(m_colorBlack,m_Shader,this.i/3);
+        m_PawnE = new Pawn(MaterialColors.Marked(),m_Shader,this.i/3);
 
         m_Line = new Line(0,0,0,this.i*(this.m_cuts-1),this.i/3,m_Shader, MaterialColors.Black());
 
@@ -108,19 +108,19 @@ public class Map {
         // drawing lines
         for(int i=0;i<m_cuts;i++) {
             if (this.h == m_Win.getWidth())
-                m_Line.transform(this.i, this.s + (this.i*i), 0);
+                m_Line.setPosition(this.i, this.s + (this.i*i), 0);
             else
-                m_Line.transform(this.s, this.i + (this.i * i), 0);
+                m_Line.setPosition(this.s, this.i + (this.i * i), 0);
 
             m_Line.draw(this.m_Win.getCamera());
         }
         for(int i=0;i<m_cuts;i++) {
             if (this.h == m_Win.getWidth())
-                m_Line.transform(this.i + (this.i*i), this.s, 0);
+                m_Line.setPosition(this.i + (this.i*i), this.s, 0);
             else
-                m_Line.transform(this.s + (this.i*i), this.i, 0);
+                m_Line.setPosition(this.s + (this.i*i), this.i, 0);
 
-            m_Line.rotate(90);
+            m_Line.setRotation(90);
             m_Line.draw(this.m_Win.getCamera());
         }
 
@@ -152,6 +152,12 @@ public class Map {
                     {
                         m_PawnB.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
                         m_PawnB.drawCheck(this.m_Win);
+                    }
+
+                    if(Fields[y][x] == Field.EMPTY_MARK)
+                    {
+                        m_PawnE.setPosition(this.calcPositionX(x),this.calcPositionY(y),0);
+                        m_PawnE.draw(this.m_Win);
                     }
 
                 }

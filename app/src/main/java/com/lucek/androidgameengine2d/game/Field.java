@@ -9,5 +9,6 @@ public enum Field {
     BLACK,
     WHITE,
     BLACK_MARK,
-    WHITE_MARK
+    WHITE_MARK,
+    EMPTY_MARK
 }

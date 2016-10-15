@@ -24,18 +24,18 @@ public class Pawn {
     }
 
     public Pawn setPosition(float x,float y,float z){
-        m_Pawn.transform(x,y,z);
-        m_Marked.transform(x,y,z);
-        m_Shadow.transform(x+radius/6,y+radius/6,0);
+        m_Pawn.setPosition(x,y,z);
+        m_Marked.setPosition(x,y,z);
+        m_Shadow.setPosition(x+radius/6,y+radius/6,0);
         return this;
     }
 
     public Pawn setPosition(float[] pos){
         float x = pos[0];
         float y = pos[1];
-        m_Pawn.transform(x,y,0);
-        m_Marked.transform(x,y,0);
-        m_Shadow.transform(x+radius/6,y+radius/6,0);
+        m_Pawn.setPosition(x,y,0);
+        m_Marked.setPosition(x,y,0);
+        m_Shadow.setPosition(x+radius/6,y+radius/6,0);
         return this;
     }
 

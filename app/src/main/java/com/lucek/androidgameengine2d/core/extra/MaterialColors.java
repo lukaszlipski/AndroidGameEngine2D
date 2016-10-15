@@ -26,7 +26,7 @@ public class MaterialColors {
         return purple;
     }
     public static float[] Marked(){
-        float[] marked = {96.0f/255,125.0f/255,139.0f/255,1};
+        float[] marked = {189.0f/255,189.0f/255,189.0f/255,1};
         return marked;
     }
 }
