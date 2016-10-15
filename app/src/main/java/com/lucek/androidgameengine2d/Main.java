@@ -26,10 +26,6 @@ public class Main {
     private Shader shr;
     // -------------
 
-    // --- TEST ---
-    private Line line;
-    // ------------
-
 
     public Main(Window win) {
         m_Window = win;
@@ -45,20 +41,6 @@ public class Main {
         // Map
         map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
 
-        // ---------- TEST --------
-//        for(int y=0;y<9;y++) {
-//            for(int x=0;x<9;x++){
-//                if(y%2==0)
-//                    map.setField(x,y, Field.BLACK);
-//                else
-//                    map.setField(x,y,Field.WHITE);
-//            }
-//        }
-        line = new Line(0,0,0,100,20,shr,MaterialColors.Purple());
-        //map.setField(0,0,Field.BLACK_MARK);
-
-        // ------------------------
-
     }
 
     public void OnWindowChange(){
@@ -73,13 +55,11 @@ public class Main {
         int y = map.convertFromCoordsToColRowY(TouchInput.getPositionY());
 
         if(x != -1 && y != -1 && map.getField(x,y) == Field.EMPTY){
-            map.setField(x,y,Field.BLACK_MARK);
+            map.setField(x,y,Field.BLACK);
         }
 
         // draw every pawns
         map.draw();
-        line.transform(200,500,0);
-        line.draw(m_Window.getCamera());
     }
 
 
