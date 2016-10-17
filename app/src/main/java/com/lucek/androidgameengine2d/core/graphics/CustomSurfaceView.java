@@ -33,5 +33,4 @@ public class CustomSurfaceView extends GLSurfaceView {
     }
 
 
-
-    }
+}

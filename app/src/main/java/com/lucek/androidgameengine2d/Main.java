@@ -34,10 +34,10 @@ public class Main {
     public void Create(){
         // when context is created
         // Default Shader
+        TouchInput.clearPositions();
         shr = new Shader(R.raw.vshader,R.raw.fshader);
         // Map
         map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
-
         // ************** HERE IS YOUR CODE *************
 
 

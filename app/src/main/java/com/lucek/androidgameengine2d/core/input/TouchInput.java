@@ -25,4 +25,9 @@ public class TouchInput {
         return m_PositionY;
     }
 
+    static public void clearPositions(){
+        m_PositionY = 0;
+        m_PositionX = 0;
+    }
+
 }
