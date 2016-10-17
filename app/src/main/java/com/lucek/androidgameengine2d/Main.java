@@ -1,16 +1,16 @@
 package com.lucek.androidgameengine2d;
 
-import android.text.InputType;
 
-import com.lucek.androidgameengine2d.core.entities.Circle;
-import com.lucek.androidgameengine2d.core.entities.Line;
-import com.lucek.androidgameengine2d.core.entities.Square;
+import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
+import com.lucek.androidgameengine2d.controllers.RandomMoveAI;
+
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.core.input.TouchInput;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
+import com.lucek.androidgameengine2d.gameplay.Game;
 
 /**
  * Created by lukas on 12.10.2016.
@@ -25,6 +25,7 @@ public class Main {
     private Map map;
     private Shader shr;
     // -------------
+    private Game gameInstance;
 
 
     public Main(Window win) {
@@ -40,7 +41,7 @@ public class Main {
 
         // ************** HERE IS YOUR CODE *************
 
-
+        gameInstance=new Game(new RandomMoveAI(),new HumanPlayerController(),map);
         // **********************************************
 
 
@@ -69,7 +70,29 @@ public class Main {
             map.setField(x,y,Field.EMPTY_MARK);
         }
 
+        HumanPlayerController.playerInputStream.add(new android.graphics.Point(x,y));
+
         // **********************************************
+
+        try {
+            gameInstance.Update();
+
+        }catch (Game.GameIsOverException e) {
+
+            //printf("Game is over");
+            for(int _y=0;_y<9;_y++){
+                for(int _x=0;_x<9;_x++){
+                    map.setField(_x,_y,e.winner);
+                }
+            }
+
+        }catch (Game.InvalidMoveException e){
+
+            //fprintf(stderr,"AI tried to make a move that was incorrect!");
+            //exit(EXIT_FAILURE);
+
+        }
+
 
         // draw every pawns
         map.draw();
