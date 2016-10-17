@@ -57,7 +57,7 @@ public class Line extends BasicEntity{
         GLES20.glUniformMatrix4fv(handle_mvpM, 1, false, mvpMatrix, 0);
 
         GLES20.glLineWidth(m_Width);
-        GLES20.glDrawArrays(GLES20.GL_LINES,0,lineCoords.length);
+        GLES20.glDrawArrays(GLES20.GL_LINES,0,2);
     }
 
     private float[] calculateCoords(float length) {
