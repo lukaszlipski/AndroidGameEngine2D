@@ -22,6 +22,7 @@ public class Main {
     private Window m_Window;
 
     // --- BASIC ---
+    private Boolean m_FirstWindowOpen;
     private Map map;
     private Shader shr;
     // -------------
@@ -38,6 +39,7 @@ public class Main {
         shr = new Shader(R.raw.vshader,R.raw.fshader);
         // Map
         map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
+        m_FirstWindowOpen = true;
         // ************** HERE IS YOUR CODE *************
 
 
@@ -61,6 +63,7 @@ public class Main {
     public void Update(){
         // updated every frame
 
+
         // ************** HERE IS YOUR CODE *************
         int x = map.convertFromCoordsToColRowX(TouchInput.getPositionX());
         int y = map.convertFromCoordsToColRowY(TouchInput.getPositionY());
@@ -72,7 +75,12 @@ public class Main {
         // **********************************************
 
         // draw every pawns
-        map.draw();
+        if(m_FirstWindowOpen) {
+
+            m_FirstWindowOpen = false;
+        } else {
+            map.draw();
+        }
     }
 
 
