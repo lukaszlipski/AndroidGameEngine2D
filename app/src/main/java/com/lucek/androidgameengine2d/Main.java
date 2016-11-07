@@ -39,8 +39,9 @@ public class Main {
         // Map
         map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
 
-        // ************** HERE IS YOUR CODE *************
 
+
+        // ************** HERE IS YOUR CODE *************
         gameInstance=new Game(new RandomMoveAI(),new HumanPlayerController(),map);
         // **********************************************
 
@@ -66,10 +67,10 @@ public class Main {
         int x = map.convertFromCoordsToColRowX(TouchInput.getPositionX());
         int y = map.convertFromCoordsToColRowY(TouchInput.getPositionY());
 
-        if(x != -1 && y != -1 && map.getField(x,y) == Field.EMPTY){
-            map.setField(x,y,Field.EMPTY_MARK);
-        }
-
+//        if(x != -1 && y != -1 && map.getField(x,y) == Field.EMPTY){
+//            map.setField(x,y,Field.EMPTY_MARK);
+//        }
+//
         HumanPlayerController.playerInputStream.add(new android.graphics.Point(x,y));
 
         // **********************************************
@@ -78,19 +79,9 @@ public class Main {
             gameInstance.Update();
 
         }catch (Game.GameIsOverException e) {
-
-            //printf("Game is over");
-            for(int _y=0;_y<9;_y++){
-                for(int _x=0;_x<9;_x++){
-                    map.setField(_x,_y,e.winner);
-                }
-            }
-
+            android.util.Log.d("Game: Event","Game is over. Winner: "+e.winner.toString());
         }catch (Game.InvalidMoveException e){
-
-            //fprintf(stderr,"AI tried to make a move that was incorrect!");
-            //exit(EXIT_FAILURE);
-
+            android.util.Log.d("Game: Exception","Player controller returned an invalid move.");
         }
 
 

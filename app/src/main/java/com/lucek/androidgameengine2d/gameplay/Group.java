@@ -15,6 +15,13 @@ public class Group {
     public java.util.LinkedList<Point> elements = new java.util.LinkedList<Point>();
     public Field colour;
 
+    /**
+     * Looks for all groups on a board passed as parameter and returns them.
+     * Based on Kosaraju's algorithm for finding Strongly Connected Components,
+     * therefore runs in O(n) time.
+     * @param board Boardstate for which group finding alghorithm is performed.
+     * @return An array of all WHITE and BLACK groups found on given board.
+     */
     public static Group[] FindAllGroups(Field[][] board){
         boolean[][] visited = new boolean[board.length][board[0].length]; //visited - which fields you've already gone through
 
@@ -58,9 +65,19 @@ public class Group {
                 }
             }
         }
+        Group[] retValue = new Group[groups.size()];
+        retValue = groups.toArray(retValue);
 
-        return (Group[]) groups.toArray();
+        return retValue;
     }
+
+    /**
+     * Finds a group the given point is a part of and returns it.
+     * Warning!: If point is EMPTY, the function will return what would-be a group of EMPTY fields.
+     * @param board selected boardstate (possibly simulated) for which the search is commenced.
+     * @param location starting point of the group search.
+     * @return Group containing point passed as parameter.
+     */
     public static Group FindGroup(Field[][] board, Point location){
         Stack<Point> toVisit = new Stack<Point>();
         Group group = new Group();
@@ -97,6 +114,12 @@ public class Group {
         return group;
     }
 
+    /**
+     * Checks whether this group has a liberty - at least one EMPTY field surrounding it.
+     * If any group would be left without a liberty, move is considered invalid.
+     * @param board selected boardstate for which the check is made.
+     * @return true if on given board this group has a liberty, false otherwise.
+     */
     public boolean HasLiberty(Field[][] board)
     {
         for(Point coords : elements)

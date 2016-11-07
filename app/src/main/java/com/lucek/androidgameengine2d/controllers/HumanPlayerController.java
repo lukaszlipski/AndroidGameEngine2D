@@ -27,7 +27,6 @@ public class HumanPlayerController extends AbstractPlayerController{
         Point input = playerInputStream.poll();
 
         while(input!=null){
-
             if(IsMoveValid(input))  return input;
             else  input=playerInputStream.poll();
 

@@ -16,14 +16,12 @@ public class RandomMoveAI extends AbstractPlayerController {
     @Override
     public Point MakeMove(){
         Field[][] board = GetBoardState();
-        int x,y,random;
-        int randMax=board.length*board[0].length;
+        int x,y;
         Point returnValue;
 
         do{
-            random=rand.nextInt(randMax);
-            x=random/board.length;
-            y=random/board[0].length;
+            x=rand.nextInt(board.length);
+            y=rand.nextInt(board[0].length);
             returnValue=new Point(x,y);
         }while(IsMoveValid(returnValue)==false);
 
