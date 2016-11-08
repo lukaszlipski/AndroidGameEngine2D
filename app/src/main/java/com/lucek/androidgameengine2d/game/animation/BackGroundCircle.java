@@ -23,7 +23,7 @@ public class BackGroundCircle {
         m_Circle = new Circle(x,y,z,radius,shader,color,32);
         m_growSpeed = growSpeed;
         m_Camera = win.getCamera();
-        m_GrowTime = 0;
+        m_GrowTime = (float)Math.random();
         m_Shader = shader;
         m_Colors = color;
     }
