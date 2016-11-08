@@ -26,16 +26,20 @@ public class Main {
     private Map map;
     private Shader shr;
 
+
     private Game gameInstance;
 
-    public Main(Window win) {
+    public Main(Window win,Shader shr) {
+
         m_Window = win;
+        this.shr = shr;
+
     }
 
     public void Create(){
         TouchInput.clearPositions();
 
-        shr = new Shader(R.raw.vshader,R.raw.fshader);
+
         map = new Map(MaterialColors.Lime(),MaterialColors.Purple(),9,m_Window,shr);
 
         m_FirstWindowOpen = true;

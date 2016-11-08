@@ -13,6 +13,10 @@ public class MaterialColors {
         float[] blue = {68.0f/255,138.0f/255,255.0f/255,1};
         return blue;
     }
+    public static float[] DarkBlue(){
+        float[] dblue = {48.0f/255,63.0f/255,159.0f/255,1};
+        return dblue;
+    }
     public static float[] Lime(){
         float[] lime = {205.0f/255,220.0f/255,57.0f/255,1};
         return lime;

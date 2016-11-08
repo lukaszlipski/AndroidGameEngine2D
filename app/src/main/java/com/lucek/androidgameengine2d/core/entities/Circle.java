@@ -19,6 +19,7 @@ public class Circle extends BasicEntity {
 
     private FloatBuffer vbo;
     private ShortBuffer ibo;
+    private float m_Radius;
 
     static private short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
 
@@ -34,6 +35,8 @@ public class Circle extends BasicEntity {
      */
     public Circle(float x,float y,float z,float radius,Shader shader,float[] colors,int cuts){
         super(x,y,z,shader,colors);
+
+        m_Radius = radius;
 
         float[] circleCoors = this.calculateCoords(cuts,radius);
         this.drawOrder = this.calculateDrawOrder(cuts);
@@ -74,6 +77,10 @@ public class Circle extends BasicEntity {
 
 
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, ibo);
+    }
+
+    public float getRadius(){
+        return m_Radius;
     }
 
     private float[] calculateCoords(int cuts,float radius){
