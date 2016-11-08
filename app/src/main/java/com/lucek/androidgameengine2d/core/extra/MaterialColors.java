@@ -22,7 +22,7 @@ public class MaterialColors {
         return purple;
     }
     public static float[] Black(){
-        float[] purple = {33.0f/255,33.0f/255,33.0f/255,1};
+        float[] purple = {21.0f/255,21.0f/255,21.0f/255,1};
         return purple;
     }
     public static float[] Marked(){

@@ -28,7 +28,6 @@ public class Main {
 
     private Game gameInstance;
 
-
     public Main(Window win) {
         m_Window = win;
     }
@@ -37,7 +36,7 @@ public class Main {
         TouchInput.clearPositions();
 
         shr = new Shader(R.raw.vshader,R.raw.fshader);
-        map = new Map(MaterialColors.Purple(),MaterialColors.Lime(),9,m_Window,shr);
+        map = new Map(MaterialColors.Lime(),MaterialColors.Purple(),9,m_Window,shr);
 
         m_FirstWindowOpen = true;
         gameInstance = new Game(new RandomMoveAI(),new HumanPlayerController(),map);
@@ -47,10 +46,10 @@ public class Main {
         map.UpdateMap(m_Window);
     }
 
-    public void Update(){
+    // DeltaTime in ms
+    public void Update(float DeltaTime){
         int x = map.convertFromCoordsToColRowX(TouchInput.getPositionX());
         int y = map.convertFromCoordsToColRowY(TouchInput.getPositionY());
-
 //        if(x != -1 && y != -1 && map.getField(x,y) == Field.EMPTY){
 //            map.setField(x,y,Field.EMPTY_MARK);
 //        }

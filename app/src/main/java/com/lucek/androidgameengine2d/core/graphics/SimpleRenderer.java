@@ -15,11 +15,16 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
 
     private Main main;
     private Window window;
+    private long m_DeltaTime;
+    private long m_LastFrameTime;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
-        GLES20.glClearColor(3.0f/255,169.0f/255,244.0f/255,1);
+        m_DeltaTime = 0;
+        m_LastFrameTime = System.currentTimeMillis();
+
+        GLES20.glClearColor(63.0f/255,81.0f/255,181.0f/255,1);
         window = new Window();
 
         main = new Main(window);
@@ -41,7 +46,12 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        main.Update();
+
+        long currentTime = System.currentTimeMillis();
+        m_DeltaTime = currentTime - m_LastFrameTime;
+        m_LastFrameTime = currentTime;
+
+        main.Update(m_DeltaTime/1000.0f);
     }
 
 }

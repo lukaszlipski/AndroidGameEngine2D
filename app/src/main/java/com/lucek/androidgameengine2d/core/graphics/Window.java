@@ -15,6 +15,7 @@ public class Window {
         float look[] = {0,0,0};
         float up[] = {0,1,0};
 
+
         camera = new Camera(pos,look,up);
     }
 
