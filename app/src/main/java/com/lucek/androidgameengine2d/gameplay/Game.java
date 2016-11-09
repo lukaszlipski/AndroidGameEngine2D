@@ -5,6 +5,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
+import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
@@ -37,18 +38,21 @@ public class Game{
     ///////////////////////////
 
     public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics){
+        //set up players
         this.player1=player1.setGameInstance(this).setColour(Field.BLACK);
         this.player2=player2.setGameInstance(this).setColour(Field.WHITE);
         currentPlayer=player1;
+        HumanPlayerController.playerInputStream.clear();    //bug fix for automatic player input after minimising app
 
+        //set up board
         boardState=new Field[9][9];
-
         for(int y=0;y<boardState.length;y++){
             for(int x=0;x<boardState[0].length;x++){
                 boardState[x][y]=Field.EMPTY;
             }
         }
 
+        //set up display
         this.graphics=graphics;
     }
 
