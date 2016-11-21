@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">No-Go Game</string>
     <string name="game_is_over_dialog_title">Game is Over</string>
-    <string name="winning_dialog_text">Player %s win this game.\nDo you want to restart the game?</string>
+    <string name="winning_dialog_text" formatted="false">Player %s won this game.\nDo you want to restart the game?</string>
     <string name="positive_dialog">Yes</string>
     <string name="negative_dialog">No</string>
     <string name="stop_game_dialog_title">Stop game</string>
