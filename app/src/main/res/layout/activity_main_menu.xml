@@ -23,7 +23,7 @@
 
             <TextView
                 style="@style/MainMenuText"
-                android:text="Start" />
+                android:text="@string/start_game_menu_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -39,7 +39,7 @@
 
             <TextView
                 style="@style/MainMenuText"
-                android:text="Exit" />
+                android:text="@string/exit_game_menu_text" />
         </RelativeLayout>
 
     </RelativeLayout>

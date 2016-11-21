@@ -1,6 +1,5 @@
 package com.lucek.androidgameengine2d.view.activities;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -28,12 +27,12 @@ public class GameLoopActivity extends BaseActivity {
     }
 
     @Subscribe
-    public void gameOverDialog(GameOverEvent event){
+    public void gameOverDialog(GameOverEvent event) {
         new AlertDialog.Builder(this)
-                .setTitle("Game is Over")
-                .setMessage(String.format("Player %s win this game. \nDo you want to restart the game?", event.winningColor))
-                .setPositiveButton("Yes", onDialogActionClickListener(DialogActions.RESTART))
-                .setNegativeButton("No", onDialogActionClickListener(DialogActions.EXIT))
+                .setTitle(R.string.game_is_over_dialog_title)
+                .setMessage(String.format(getString(R.string.winning_dialog_text), event.winningColor))
+                .setPositiveButton(R.string.positive_dialog, onDialogActionClickListener(DialogActions.RESTART))
+                .setNegativeButton(R.string.negative_dialog, onDialogActionClickListener(DialogActions.EXIT))
                 .setCancelable(false)
                 .show();
     }
@@ -41,10 +40,10 @@ public class GameLoopActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setTitle("Stop game")
-                .setMessage("Are you sure you want to stop the game?")
-                .setPositiveButton("Yes", onDialogActionClickListener(DialogActions.EXIT))
-                .setNegativeButton("No", null)
+                .setTitle(R.string.stop_game_dialog_title)
+                .setMessage(R.string.stop_game_dialog_text)
+                .setPositiveButton(R.string.positive_dialog, onDialogActionClickListener(DialogActions.EXIT))
+                .setNegativeButton(R.string.negative_dialog, null)
                 .show();
     }
 
@@ -52,9 +51,9 @@ public class GameLoopActivity extends BaseActivity {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (action.equals(DialogActions.EXIT)){
+                if (action.equals(DialogActions.EXIT)) {
                     finish();
-                } else if (action.equals(DialogActions.RESTART)){
+                } else if (action.equals(DialogActions.RESTART)) {
                     Intent intent = new Intent(context, GameLoopActivity.class);
                     startActivity(intent);
                     finish();
