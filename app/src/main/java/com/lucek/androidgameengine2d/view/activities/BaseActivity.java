@@ -1,11 +1,10 @@
-package com.lucek.androidgameengine2d.activities;
+package com.lucek.androidgameengine2d.view.activities;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.lucek.androidgameengine2d.Main;
 
@@ -13,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 abstract class BaseActivity extends AppCompatActivity {
 
@@ -22,6 +22,11 @@ abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         afterBind();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
@@ -43,5 +48,6 @@ abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void initBus(Main main){}
+    public void initBus(Main main) {
+    }
 }

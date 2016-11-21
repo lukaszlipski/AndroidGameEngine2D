@@ -1,11 +1,10 @@
-package com.lucek.androidgameengine2d.activities;
+package com.lucek.androidgameengine2d.view.activities;
 
 import android.content.DialogInterface;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.lucek.androidgameengine2d.core.graphics.CustomSurfaceView;
 
