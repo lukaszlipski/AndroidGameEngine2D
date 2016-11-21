@@ -9,6 +9,8 @@ import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by Daniel on 2016-10-15.
  */
