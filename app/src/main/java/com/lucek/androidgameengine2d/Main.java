@@ -10,6 +10,8 @@ import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.core.input.TouchInput;
+import com.lucek.androidgameengine2d.eventBus.Bus;
+import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 import com.lucek.androidgameengine2d.gameplay.Game;
@@ -23,9 +25,9 @@ public class Main {
     private Window m_Window;
 
     private boolean m_FirstWindowOpen;
+    private boolean gameIsInProgress;
     private Map map;
     private Shader shr;
-
 
     private Game gameInstance;
 
@@ -39,10 +41,10 @@ public class Main {
     public void Create(){
         TouchInput.clearPositions();
 
-
         map = new Map(MaterialColors.Lime(),MaterialColors.Purple(),9,m_Window,shr);
 
         m_FirstWindowOpen = true;
+        gameIsInProgress = true;
         gameInstance = new Game(new RandomMoveAI(),new HumanPlayerController(),map);
     }
 
@@ -61,9 +63,15 @@ public class Main {
         HumanPlayerController.playerInputStream.add(new android.graphics.Point(x,y));
 
         try {
-            gameInstance.Update();
+            if (gameIsInProgress) {
+                gameInstance.Update();
+            }
         }catch (Game.GameIsOverException e) {
-            Log.d("Game: Event","Game is over. Winner: "+e.winner.toString());
+            if (gameIsInProgress) {
+                Bus.getInstance().post(new GameOverEvent(e.winner));
+                Log.d("Game: Event", "Game is over. Winner: " + e.winner.toString());
+            }
+            gameIsInProgress = false;
         }catch (Game.InvalidMoveException e){
             Log.d("Game: Exception","Player controller returned an invalid move.");
         }

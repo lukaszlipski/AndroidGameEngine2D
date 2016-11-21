@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lucek.androidgameengine2d.Main;
+import com.lucek.androidgameengine2d.eventBus.Bus;
+import com.lucek.androidgameengine2d.eventBus.events.SampleResponseEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -16,11 +18,14 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 abstract class BaseActivity extends AppCompatActivity {
 
+    protected Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        context = this;
         afterBind();
     }
 
@@ -32,13 +37,13 @@ abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
+        Bus.getInstance().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        EventBus.getDefault().unregister(this);
+        Bus.getInstance().unregister(this);
     }
 
     @LayoutRes
@@ -48,6 +53,6 @@ abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void initBus(Main main) {
+    public void initBus(SampleResponseEvent event) {
     }
 }
