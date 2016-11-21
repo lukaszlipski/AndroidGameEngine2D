@@ -34,6 +34,7 @@ public class GameLoopActivity extends BaseActivity {
                 .setMessage(String.format("Player %s win this game. \nDo you want to restart the game?", event.winningColor))
                 .setPositiveButton("Yes", onDialogActionClickListener(DialogActions.RESTART))
                 .setNegativeButton("No", onDialogActionClickListener(DialogActions.EXIT))
+                .setCancelable(false)
                 .show();
     }
 
