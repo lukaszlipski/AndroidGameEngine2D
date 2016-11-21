@@ -4,14 +4,10 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".view.activities.GameLoopActivity">
 
-    <GLSurfaceView
-        android:id="@+id/game_content"
+    <fragment android:name="com.lucek.androidgameengine2d.view.fragments.GameSurfaceFragment"
+        android:id="@+id/gameloop_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

@@ -1,19 +1,19 @@
 package com.lucek.androidgameengine2d.view.activities;
 
 import android.content.DialogInterface;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.lucek.androidgameengine2d.core.graphics.CustomSurfaceView;
+import com.lucek.androidgameengine2d.R;
 
-public class GameLoopActivity extends AppCompatActivity {
+public class GameLoopActivity extends BaseActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        CustomSurfaceView surfaceView = new CustomSurfaceView(this);
-        setContentView(surfaceView);
+    protected int getLayoutId() {
+        return R.layout.activity_game_loop;
+    }
+
+    @Override
+    protected void afterBind() {
+
     }
 
     @Override
