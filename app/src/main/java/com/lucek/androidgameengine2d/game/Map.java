@@ -34,7 +34,7 @@ public class Map {
      * @param window - handle of window
      * @param shader - basic shader
      */
-    public Map(float[] colorWhite, float[] colorBlack, int cuts, Window window,Shader shader){
+    public Map(float[] colorWhite, float[] colorBlack, int cuts, Window window, Shader shader){
 
         m_colorWhite = colorWhite;
         m_colorBlack = colorBlack;

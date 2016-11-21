@@ -41,7 +41,7 @@ public class Main {
     public void Create(){
         TouchInput.clearPositions();
 
-        map = new Map(MaterialColors.Lime(),MaterialColors.Purple(),9,m_Window,shr);
+        map = new Map(MaterialColors.White(),MaterialColors.Black(),9,m_Window,shr);
 
         m_FirstWindowOpen = true;
         gameIsInProgress = true;
