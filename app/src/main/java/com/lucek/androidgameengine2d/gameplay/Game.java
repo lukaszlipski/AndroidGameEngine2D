@@ -1,17 +1,13 @@
 package com.lucek.androidgameengine2d.gameplay;
 
 import android.graphics.Point;
-import android.provider.Settings;
 import android.util.Log;
 
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
-import com.lucek.androidgameengine2d.eventBus.Bus;
-import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Daniel on 2016-10-15.
@@ -36,6 +32,7 @@ public class Game{
     private AbstractPlayerController player1,player2,currentPlayer;
     private Field[][] boardState;
     private Map graphics;
+    private Point lastMove = null;
 
     private final boolean DEBUG = false;
 
@@ -104,7 +101,7 @@ public class Game{
 
             Point move;
             try {
-                 move = currentPlayer.MakeMove();
+                 move = currentPlayer.MakeMove(0.0f,0.0f,lastMove);
             }
             catch (AbstractPlayerController.NoMoveMadeException e){
                 return; //try to get input from player in the next frame.
@@ -121,6 +118,7 @@ public class Game{
             }
             else {
                 ApplyMove(move);
+                lastMove=move;
                 if(DEBUG) {
                     Log.d("Update()", "Move applied to the board");
                 }

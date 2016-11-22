@@ -23,7 +23,7 @@ public class HumanPlayerController extends AbstractPlayerController{
 
 
     @Override
-    public Point MakeMove() throws NoMoveMadeException{
+    public Point MakeMove(float currentTime, float maxAvailableTime, Point lastOpponentsMove) throws NoMoveMadeException{
         Point input = playerInputStream.poll();
 
         while(input!=null){

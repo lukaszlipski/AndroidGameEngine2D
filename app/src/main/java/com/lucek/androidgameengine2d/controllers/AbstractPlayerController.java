@@ -71,6 +71,6 @@ public abstract class AbstractPlayerController {
      * @throws NoMoveMadeException for Human/Network controllers only. Signalises waiting for player's input.
      * Same function is then called in next frame.
      */
-    abstract public Point MakeMove() throws NoMoveMadeException;
+    abstract public Point MakeMove(float currentTime, float maxAvailableTime, Point lastOpponentsMove) throws NoMoveMadeException;
 
 }
