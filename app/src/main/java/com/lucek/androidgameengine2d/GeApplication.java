@@ -6,7 +6,7 @@ import android.content.Context;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-public class GEApplication extends Application {
+public class GeApplication extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context applicationContext;
