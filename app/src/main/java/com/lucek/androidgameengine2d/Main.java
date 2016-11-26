@@ -45,7 +45,7 @@ public class Main {
 
         m_FirstWindowOpen = true;
         gameIsInProgress = true;
-        gameInstance = new Game(new RandomMoveAI(),new HumanPlayerController(),map);
+        gameInstance = new Game(new RandomMoveAI(1000.0f), new HumanPlayerController(1000.0f), map,m_Window);
     }
 
     public void OnWindowChange(){

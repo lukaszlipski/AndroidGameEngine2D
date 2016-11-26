@@ -20,7 +20,9 @@ public class HumanPlayerController extends AbstractPlayerController{
 
     public static java.util.Queue<Point> playerInputStream = new LimitedQueue<>(8);
 
-
+    public HumanPlayerController(float movementTime){
+        super(movementTime);
+    }
 
     @Override
     public Point MakeMove(float currentTime, float maxAvailableTime, Point lastOpponentsMove) throws NoMoveMadeException{

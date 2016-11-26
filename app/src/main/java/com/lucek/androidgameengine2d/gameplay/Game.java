@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
+import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
@@ -32,13 +33,14 @@ public class Game{
     private AbstractPlayerController player1,player2,currentPlayer;
     private Field[][] boardState;
     private Map graphics;
+    private Window window;
     private Point lastMove = null;
 
     private final boolean DEBUG = false;
 
     ///////////////////////////
 
-    public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics){
+    public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics, Window window){
         //set up players
         this.player1=player1.setGameInstance(this).setColour(Field.BLACK);
         this.player2=player2.setGameInstance(this).setColour(Field.WHITE);
@@ -55,6 +57,8 @@ public class Game{
 
         //set up display
         this.graphics=graphics;
+        //and time checking
+        this.window=window;
     }
 
     public Field[][] GetBoardState(){
@@ -100,8 +104,9 @@ public class Game{
             }
 
             Point move;
+            float currentTime=GetCurrentTime();
             try {
-                 move = currentPlayer.MakeMove(0.0f,0.0f,lastMove);
+                 move = currentPlayer.MakeMove(currentTime,currentTime+currentPlayer.getMovementTime(),lastMove);
             }
             catch (AbstractPlayerController.NoMoveMadeException e){
                 return; //try to get input from player in the next frame.
@@ -171,6 +176,11 @@ public class Game{
         if(DEBUG) {
             Log.d("NextPlayer()", "Changed to... " + currentPlayer.GetColour().toString());
         }
+    }
+
+    public float GetCurrentTime()
+    {
+        return window.getCurrentTimeMS();
     }
 
 }
