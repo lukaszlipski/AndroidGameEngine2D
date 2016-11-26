@@ -13,9 +13,12 @@
         android:src="@drawable/ic_logo" />
 
     <RelativeLayout
+        android:id="@+id/main_menu_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/btn_start"
@@ -49,5 +52,133 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/play_preferences_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="2"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <ImageView
+                    style="@style/MainMenuImage"
+                    android:src="@drawable/chinese_player" />
+
+                <TextView
+                    style="@style/MainMenuText"
+                    android:text="PLAYER1" />
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/control_spinner_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="200dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_turn_time_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_turn_time_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Time for turn in ms"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_game_count_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_game_count_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Simulation games count"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <ImageView
+                    style="@style/MainMenuImage"
+                    android:src="@drawable/chinese_player" />
+
+                <TextView
+                    style="@style/MainMenuText"
+                    android:text="PLAYER2" />
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/control_spinner_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="200dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_turn_time_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_turn_time_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Time for turn in ms"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_game_count_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_game_count_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Simulation games count"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
