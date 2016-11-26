@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
+    <ImageView
+        android:id="@+id/game_logo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_logo" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -8,4 +8,6 @@
     <string name="stop_game_dialog_text">Are you sure you want to stop the game?</string>
     <string name="start_game_menu_text">Start</string>
     <string name="exit_game_menu_text">Exit</string>
+    <string name="algorithm_tournament_on_text">Algorithm Tournament Mode turned on</string>
+    <string name="algorithm_tournament_off_text">Algorithm Tournament Mode turned off</string>
 </resources>

@@ -30,7 +30,7 @@ public class PreferencesManager {
 
     private static void set(String key, Boolean value) {
         setter.putBoolean(key, value);
-        setter.apply();
+        setter.commit();
     }
 
     @Nullable
