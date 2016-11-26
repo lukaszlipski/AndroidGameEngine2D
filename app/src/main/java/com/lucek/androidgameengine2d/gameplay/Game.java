@@ -35,8 +35,7 @@ public class Game{
     private Map graphics;
     private Window window;
     private Point lastMove = null;
-
-    private final boolean DEBUG = false;
+    private long timeAtTheEndOfLastTurn;
 
     ///////////////////////////
 
@@ -59,6 +58,7 @@ public class Game{
         this.graphics=graphics;
         //and time checking
         this.window=window;
+        timeAtTheEndOfLastTurn=GetCurrentTime();
     }
 
     public Field[][] GetBoardState(){
@@ -99,39 +99,25 @@ public class Game{
     public void Update() throws GameIsOverException, InvalidMoveException {
 
         if(!IsGameOver()){
-            if(DEBUG) {
-                Log.d("Update()", "Starting update...");
-            }
-
             Point move;
-            float currentTime=GetCurrentTime();
+            currentPlayer.setTimeAtStart(timeAtTheEndOfLastTurn);
             try {
-                 move = currentPlayer.MakeMove(currentTime,currentTime+currentPlayer.getMovementTime(),lastMove);
+                 move = currentPlayer.MakeMove(lastMove);
             }
             catch (AbstractPlayerController.NoMoveMadeException e){
                 return; //try to get input from player in the next frame.
             }
-            if(DEBUG) {
-                Log.d("Update()", "Move selected...");
-            }
+
 
             if(IsMoveValid(move)==false) {
-                if(DEBUG) {
-                    Log.d("Update()", "MOVE IS INVALID!");
-                }
                 throw new InvalidMoveException("Invalid move!");
             }
             else {
                 ApplyMove(move);
                 lastMove=move;
-                if(DEBUG) {
-                    Log.d("Update()", "Move applied to the board");
-                }
+                timeAtTheEndOfLastTurn=GetCurrentTime();
             }
 
-            if(DEBUG) {
-                Log.d("Update()", "Selecting next player...");
-            }
             NextPlayer();
         }
         //game finished
@@ -158,27 +144,18 @@ public class Game{
     private void ApplyMove(Point move){
         boardState[move.x][move.y]=currentPlayer.GetColour();
         graphics.setField(move.x,move.y,currentPlayer.GetColour());
-        if(DEBUG) {
-            Log.d("ApplyMove()", "Colour: " + currentPlayer.GetColour().toString());
-        }
     }
 
     private void NextPlayer(){
-        if(DEBUG) {
-            Log.d("NextPlayer()", "Current player: " + currentPlayer.GetColour().toString());
-        }
         if(currentPlayer==player1){
             currentPlayer=player2;
         }
         else {
-            currentPlayer=player1;
-        }
-        if(DEBUG) {
-            Log.d("NextPlayer()", "Changed to... " + currentPlayer.GetColour().toString());
+            currentPlayer = player1;
         }
     }
 
-    public float GetCurrentTime()
+    public long GetCurrentTime()
     {
         return window.getCurrentTimeMS();
     }
