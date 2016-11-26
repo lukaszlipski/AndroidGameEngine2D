@@ -39,6 +39,6 @@ public class Window {
         return this.camera;
     }
 
-    public float getCurrentTimeMS() { return System.currentTimeMillis(); }
+    public long getCurrentTimeMS() { return System.currentTimeMillis(); }
 
 }
