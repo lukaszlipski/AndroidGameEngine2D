@@ -13,9 +13,14 @@ public class RandomMoveAI extends AbstractPlayerController {
 
     private Random rand = new Random();
 
+    public RandomMoveAI(long movementTime){
+        super(movementTime);
+    }
+
     @Override
-    public Point MakeMove(float currentTime, float maxAvailableTime, Point lastOpponentsMove){
+    public Point MakeMove(Point lastOpponentsMove){
         Field[][] board = GetBoardState();
+
         int x,y;
         Point returnValue;
 

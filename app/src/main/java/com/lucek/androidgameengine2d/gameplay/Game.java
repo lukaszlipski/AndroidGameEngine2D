@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
+import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
@@ -32,13 +33,13 @@ public class Game{
     private AbstractPlayerController player1,player2,currentPlayer;
     private Field[][] boardState;
     private Map graphics;
+    private Window window;
     private Point lastMove = null;
-
-    private final boolean DEBUG = false;
+    private long timeAtTheEndOfLastTurn;
 
     ///////////////////////////
 
-    public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics){
+    public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics, Window window){
         //set up players
         this.player1=player1.setGameInstance(this).setColour(Field.BLACK);
         this.player2=player2.setGameInstance(this).setColour(Field.WHITE);
@@ -55,6 +56,9 @@ public class Game{
 
         //set up display
         this.graphics=graphics;
+        //and time checking
+        this.window=window;
+        timeAtTheEndOfLastTurn=GetCurrentTime();
     }
 
     public Field[][] GetBoardState(){
@@ -95,38 +99,25 @@ public class Game{
     public void Update() throws GameIsOverException, InvalidMoveException {
 
         if(!IsGameOver()){
-            if(DEBUG) {
-                Log.d("Update()", "Starting update...");
-            }
-
             Point move;
+            currentPlayer.setTimeAtStart(timeAtTheEndOfLastTurn);
             try {
-                 move = currentPlayer.MakeMove(0.0f,0.0f,lastMove);
+                 move = currentPlayer.MakeMove(lastMove);
             }
             catch (AbstractPlayerController.NoMoveMadeException e){
                 return; //try to get input from player in the next frame.
             }
-            if(DEBUG) {
-                Log.d("Update()", "Move selected...");
-            }
+
 
             if(IsMoveValid(move)==false) {
-                if(DEBUG) {
-                    Log.d("Update()", "MOVE IS INVALID!");
-                }
                 throw new InvalidMoveException("Invalid move!");
             }
             else {
                 ApplyMove(move);
                 lastMove=move;
-                if(DEBUG) {
-                    Log.d("Update()", "Move applied to the board");
-                }
+                timeAtTheEndOfLastTurn=GetCurrentTime();
             }
 
-            if(DEBUG) {
-                Log.d("Update()", "Selecting next player...");
-            }
             NextPlayer();
         }
         //game finished
@@ -153,24 +144,20 @@ public class Game{
     private void ApplyMove(Point move){
         boardState[move.x][move.y]=currentPlayer.GetColour();
         graphics.setField(move.x,move.y,currentPlayer.GetColour());
-        if(DEBUG) {
-            Log.d("ApplyMove()", "Colour: " + currentPlayer.GetColour().toString());
-        }
     }
 
     private void NextPlayer(){
-        if(DEBUG) {
-            Log.d("NextPlayer()", "Current player: " + currentPlayer.GetColour().toString());
-        }
         if(currentPlayer==player1){
             currentPlayer=player2;
         }
         else {
-            currentPlayer=player1;
+            currentPlayer = player1;
         }
-        if(DEBUG) {
-            Log.d("NextPlayer()", "Changed to... " + currentPlayer.GetColour().toString());
-        }
+    }
+
+    public long GetCurrentTime()
+    {
+        return window.getCurrentTimeMS();
     }
 
 }
