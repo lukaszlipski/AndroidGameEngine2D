@@ -10,4 +10,12 @@
     <string name="exit_game_menu_text">Exit</string>
     <string name="algorithm_tournament_on_text">Algorithm Tournament Mode turned on</string>
     <string name="algorithm_tournament_off_text">Algorithm Tournament Mode turned off</string>
+    <string name="player_1_label">PLAYER1</string>
+    <string name="player_2_label">PLAYER2</string>
+    <string name="time_for_turn_label">Time for turn in ms</string>
+    <string name="simulation_games_label">Simulation games count</string>
+    <string name="play_game_menu_text">Play</string>
+    <string name="new_game_menu_text">New game</string>
+    <string name="human_dropdown_value">Human</string>
+    <string name="simple_ai_dropdown_value">Simple-AI</string>
 </resources>
