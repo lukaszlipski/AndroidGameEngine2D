@@ -14,10 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.lucek.androidgameengine2d.R;
+import com.lucek.androidgameengine2d.game.PlayerTypes;
 import com.lucek.androidgameengine2d.storage.PreferencesManager;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,8 +44,6 @@ public class MainMenuActivity extends BaseActivity {
     @BindView(R.id.btn_back)
     ImageView btnBack;
 
-    private Set<String> playersSet = new HashSet<>();
-
     private int turnCounter = 0;
     private boolean isTournamentModeTurnedOn = PreferencesManager.NoGo.getAlgorithmTournament();
 
@@ -58,12 +54,8 @@ public class MainMenuActivity extends BaseActivity {
 
     @Override
     protected void afterBind() {
-        //TODO Get algorithms to list
-        playersSet.add(getString(R.string.human_dropdown_value));
-        playersSet.add(getString(R.string.simple_ai_dropdown_value));
-
         ArrayAdapter<CharSequence> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-        spinnerAdapter.addAll(playersSet);
+        spinnerAdapter.addAll(PlayerTypes.getListOfTypes());
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         controlSpinner1.setAdapter(spinnerAdapter);
@@ -73,19 +65,52 @@ public class MainMenuActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        showMainMenu();
         etTurnTime.setText(String.valueOf(PreferencesManager.NoGo.getTimeForTurn()));
         etGameCount.setText(String.valueOf(PreferencesManager.NoGo.getGamesCount()));
-        controlSpinner1.setSelection(0); //TODO
-        controlSpinner2.setSelection(0);
+        controlSpinner1.setSelection(PlayerTypes.getPositionByName(PreferencesManager.NoGo.getPlayer1()));
+        controlSpinner2.setSelection(PlayerTypes.getPositionByName(PreferencesManager.NoGo.getPlayer2()));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        savePlayerState();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (btnBack.getVisibility() == View.VISIBLE) {
+            showMainMenu();
+        } else {
+            finish();
+        }
+    }
+
+    private void showNewGameMenu() {
+        playPreferencesItems.setVisibility(View.VISIBLE);
+        btnBack.setVisibility(View.VISIBLE);
+        mainMenuItems.setVisibility(View.GONE);
+    }
+
+    private void showMainMenu() {
+        playPreferencesItems.setVisibility(View.GONE);
+        btnBack.setVisibility(View.GONE);
+        mainMenuItems.setVisibility(View.VISIBLE);
+    }
+
+    private void savePlayerState() {
+        PreferencesManager.NoGo.setPlayer1(controlSpinner1.getSelectedItem().toString());
+        PreferencesManager.NoGo.setPlayer2(controlSpinner2.getSelectedItem().toString());
+        PreferencesManager.NoGo.setTimeForTurn(Long.parseLong(etTurnTime.getText().toString()));
+        PreferencesManager.NoGo.setGamesCount(Integer.parseInt(etGameCount.getText().toString()));
     }
 
     @OnClick({R.id.btn_new_game, R.id.btn_exit, R.id.btn_start, R.id.btn_back, R.id.game_logo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_new_game:
-                playPreferencesItems.setVisibility(View.VISIBLE);
-                btnBack.setVisibility(View.VISIBLE);
-                mainMenuItems.setVisibility(View.GONE);
+                showNewGameMenu();
                 break;
 
             case R.id.btn_exit:
@@ -93,23 +118,14 @@ public class MainMenuActivity extends BaseActivity {
                 break;
 
             case R.id.btn_start:
-                PreferencesManager.NoGo.setPlayer1(controlSpinner1.getSelectedItem().toString());
-                PreferencesManager.NoGo.setPlayer2(controlSpinner2.getSelectedItem().toString());
-                PreferencesManager.NoGo.setTimeForTurn(Long.parseLong(etTurnTime.getText().toString()));
-                PreferencesManager.NoGo.setGamesCount(Integer.parseInt(etGameCount.getText().toString()));
+                savePlayerState();
 
                 Intent intent = new Intent(this, GameLoopActivity.class);
                 startActivity(intent);
-
-                playPreferencesItems.setVisibility(View.GONE);
-                btnBack.setVisibility(View.GONE);
-                mainMenuItems.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.btn_back:
-                playPreferencesItems.setVisibility(View.GONE);
-                btnBack.setVisibility(View.GONE);
-                mainMenuItems.setVisibility(View.VISIBLE);
+                showMainMenu();
                 break;
 
             case R.id.game_logo:

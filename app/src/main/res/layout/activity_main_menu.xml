@@ -68,7 +68,7 @@
     <LinearLayout
         android:id="@+id/play_preferences_items"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/game_logo"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
@@ -82,14 +82,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <ImageView
                     style="@style/MainMenuImage"
@@ -100,11 +98,18 @@
                     android:text="@string/player_1_label" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
+            <Spinner
+                android:id="@+id/control_spinner_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp">
+                android:layout_gravity="center"
+                android:minWidth="200dp"
+                android:dropDownWidth="200dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
                 <ImageView
                     style="@style/MainMenuImage"
@@ -115,29 +120,13 @@
                     android:text="@string/player_2_label" />
             </RelativeLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <Spinner
-                android:id="@+id/control_spinner_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:dropDownWidth="200dp" />
-
             <Spinner
                 android:id="@+id/control_spinner_2"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:minWidth="200dp"
                 android:dropDownWidth="200dp" />
-
 
         </LinearLayout>
 
