@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/main_menu_layout"
+    android:animateLayoutChanges="true"
     tools:ignore="MissingPrefix">
 
     <ImageView
@@ -33,12 +35,13 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:visibility="visible"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/btn_new_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="5dp">
 
             <ImageView
@@ -55,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_new_game"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="5dp">
 
             <ImageView
@@ -72,6 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/game_logo">
+
         <LinearLayout
             android:id="@+id/play_preferences_items"
             android:layout_width="match_parent"
@@ -82,7 +87,8 @@
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
+            android:animateLayoutChanges="true"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -173,6 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="?android:attr/selectableItemBackground"
                 android:padding="5dp">
 
                 <ImageView

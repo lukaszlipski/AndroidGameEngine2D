@@ -109,7 +109,7 @@ public class Game{
             }
 
 
-            if(IsMoveValid(move)==false) {
+            if(!IsMoveValid(move)) {
                 throw new InvalidMoveException("Invalid move!");
             }
             else {
