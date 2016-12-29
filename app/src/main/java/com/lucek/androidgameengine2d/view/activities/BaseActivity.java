@@ -64,7 +64,9 @@ abstract class BaseActivity extends AppCompatActivity {
     public void initBus(SampleResponseEvent event) {
     }
 
-    protected void showYesNoDialog(Context mContext, String title, String message, String positiveText, View.OnClickListener onPositiveClickListener, String negativeText, View.OnClickListener onNegativeClickListener, boolean cancellable) {
+    protected void showYesNoDialog(Context mContext, String title, String message, String positiveText,
+                                   View.OnClickListener onPositiveClickListener, String negativeText,
+                                   View.OnClickListener onNegativeClickListener, boolean cancellable) {
         removeDialog();
         mDialog = new Dialog(mContext, android.R.style.Theme_Translucent_NoTitleBar);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -93,5 +95,4 @@ abstract class BaseActivity extends AppCompatActivity {
         if (mDialog != null)
             mDialog.dismiss();
     }
-
 }

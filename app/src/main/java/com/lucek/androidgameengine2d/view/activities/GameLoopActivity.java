@@ -1,16 +1,30 @@
 package com.lucek.androidgameengine2d.view.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.os.Handler;
+import android.support.v4.util.TimeUtils;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lucek.androidgameengine2d.R;
 import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
+import com.lucek.androidgameengine2d.eventBus.events.PlayerTurnEvent;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.concurrent.TimeUnit;
+
+import butterknife.BindView;
+
 public class GameLoopActivity extends BaseActivity {
+
+    @BindView(R.id.current_turn_dialog)
+    RelativeLayout currentTurnDialog;
+    @BindView(R.id.current_turn_text)
+    TextView currentTurnText;
+    @BindView(R.id.activity_main)
+    RelativeLayout activityMain;
 
     private enum DialogActions {
         EXIT,
@@ -25,6 +39,18 @@ public class GameLoopActivity extends BaseActivity {
     @Override
     protected void afterBind() {
 
+    }
+
+    @Subscribe
+    public void playerTurnEvent(PlayerTurnEvent event) {
+        currentTurnText.setText(String.format(getString(R.string.player_turn_text), getString(event.currentPlayerString)));
+        currentTurnDialog.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                currentTurnDialog.setVisibility(View.GONE);
+            }
+        }, TimeUnit.SECONDS.toMillis(2));
     }
 
     @Subscribe

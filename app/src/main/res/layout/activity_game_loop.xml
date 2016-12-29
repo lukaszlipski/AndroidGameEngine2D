@@ -4,10 +4,34 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".view.activities.GameLoopActivity">
 
-    <fragment android:name="com.lucek.androidgameengine2d.view.fragments.GameSurfaceFragment"
+    <fragment
+        android:name="com.lucek.androidgameengine2d.view.fragments.GameSurfaceFragment"
         android:id="@+id/gameloop_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/current_turn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:padding="5dp">
+
+        <ImageView
+            style="@style/MainMenuImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dialog_turn_background" />
+
+        <TextView
+            style="@style/MainMenuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_turn_text"
+            android:text="@string/player_turn_text" />
+    </RelativeLayout>
 </RelativeLayout>

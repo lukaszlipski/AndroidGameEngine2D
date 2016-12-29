@@ -3,9 +3,12 @@ package com.lucek.androidgameengine2d.gameplay;
 import android.graphics.Point;
 import android.util.Log;
 
+import com.lucek.androidgameengine2d.R;
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.core.graphics.Window;
+import com.lucek.androidgameengine2d.eventBus.Bus;
+import com.lucek.androidgameengine2d.eventBus.events.PlayerTurnEvent;
 import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 
@@ -149,9 +152,11 @@ public class Game{
     private void NextPlayer(){
         if(currentPlayer==player1){
             currentPlayer=player2;
+            Bus.getInstance().post(new PlayerTurnEvent(R.string.player_2_label));
         }
         else {
             currentPlayer = player1;
+            Bus.getInstance().post(new PlayerTurnEvent(R.string.player_1_label));
         }
     }
 
