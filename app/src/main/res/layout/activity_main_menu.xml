@@ -12,6 +12,7 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_margin="20dp"
         android:src="@drawable/ic_logo" />
 
     <ImageView
@@ -26,9 +27,11 @@
 
     <RelativeLayout
         android:id="@+id/main_menu_items"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/game_logo"
+        android:layout_margin="10dp"
+        android:gravity="center"
         android:visibility="visible"
         tools:visibility="gone">
 
@@ -65,119 +68,122 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/play_preferences_items"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/game_logo"
-        android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/game_logo">
         <LinearLayout
+            android:id="@+id/play_preferences_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    style="@style/MainMenuImage"
-                    android:src="@drawable/chinese_player" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
-                <TextView
-                    style="@style/MainMenuText"
-                    android:text="@string/player_1_label" />
-            </RelativeLayout>
+                    <ImageView
+                        style="@style/MainMenuImage"
+                        android:src="@drawable/chinese_player" />
 
-            <Spinner
-                android:id="@+id/control_spinner_1"
+                    <TextView
+                        style="@style/MainMenuText"
+                        android:text="@string/player_1_label" />
+                </RelativeLayout>
+
+                <Spinner
+                    android:id="@+id/control_spinner_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:dropDownWidth="200dp"
+                    android:minWidth="200dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageView
+                        style="@style/MainMenuImage"
+                        android:src="@drawable/chinese_player" />
+
+                    <TextView
+                        style="@style/MainMenuText"
+                        android:text="@string/player_2_label" />
+                </RelativeLayout>
+
+                <Spinner
+                    android:id="@+id/control_spinner_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:dropDownWidth="200dp"
+                    android:minWidth="200dp" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_turn_time"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp">
+
+                <EditText
+                    android:id="@+id/et_turn_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/time_for_turn_label"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_game_count"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp">
+
+                <EditText
+                    android:id="@+id/et_game_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/simulation_games_label"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:minWidth="200dp"
-                android:dropDownWidth="200dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <ImageView
                     style="@style/MainMenuImage"
-                    android:src="@drawable/chinese_player" />
+                    android:src="@drawable/chinese_start" />
 
                 <TextView
                     style="@style/MainMenuText"
-                    android:text="@string/player_2_label" />
+                    android:text="@string/start_game_menu_text" />
             </RelativeLayout>
-
-            <Spinner
-                android:id="@+id/control_spinner_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:minWidth="200dp"
-                android:dropDownWidth="200dp" />
 
         </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/til_turn_time"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp">
-
-            <EditText
-                android:id="@+id/et_turn_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/time_for_turn_label"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/til_game_count"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp">
-
-            <EditText
-                android:id="@+id/et_game_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/simulation_games_label"
-                android:inputType="number" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <RelativeLayout
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp">
-
-            <ImageView
-                style="@style/MainMenuImage"
-                android:src="@drawable/chinese_start" />
-
-            <TextView
-                style="@style/MainMenuText"
-                android:text="@string/start_game_menu_text" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
+    </ScrollView>
 </RelativeLayout>

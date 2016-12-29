@@ -60,6 +60,7 @@ public class MainMenuActivity extends BaseActivity {
 
         controlSpinner1.setAdapter(spinnerAdapter);
         controlSpinner2.setAdapter(spinnerAdapter);
+        checkTournamentState();
     }
 
     @Override
@@ -76,6 +77,16 @@ public class MainMenuActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         savePlayerState();
+    }
+
+    private void checkTournamentState(){
+        if (isTournamentModeTurnedOn){
+            tilTurnTime.setVisibility(View.VISIBLE);
+            tilGameCount.setVisibility(View.VISIBLE);
+        } else {
+            tilTurnTime.setVisibility(View.GONE);
+            tilGameCount.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -147,6 +158,7 @@ public class MainMenuActivity extends BaseActivity {
                     }
 
                     turnCounter = 0;
+                    checkTournamentState();
                 }
                 break;
         }
