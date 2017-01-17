@@ -64,6 +64,15 @@ public class Game{
         timeAtTheEndOfLastTurn=GetCurrentTime();
     }
 
+    public Game(AbstractPlayerController player1, Field player1colour, AbstractPlayerController player2, Field player2colour, Field[][] boardState) {
+        this.player1=player1.setGameInstance(this).setColour(player1colour);
+        this.player2=player2.setGameInstance(this).setColour(player2colour);
+
+        this.boardState=boardState;
+        timeAtTheEndOfLastTurn=GetCurrentTime();
+
+    }
+
     public Field[][] GetBoardState(){
         Field[][] returnValue = new Field[boardState.length][boardState[0].length];
         for(int i=0;i<boardState.length;i++){
