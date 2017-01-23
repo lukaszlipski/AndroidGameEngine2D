@@ -172,7 +172,7 @@ public class Game{
 
     public long GetCurrentTime()
     {
-        return (window==null)?window.getCurrentTimeMS():0;
+        return (window!=null)?window.getCurrentTimeMS():0;
     }
 
 }
