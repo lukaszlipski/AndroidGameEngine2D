@@ -12,7 +12,6 @@ import com.lucek.androidgameengine2d.core.graphics.Window;
 import com.lucek.androidgameengine2d.core.input.TouchInput;
 import com.lucek.androidgameengine2d.eventBus.Bus;
 import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
-import com.lucek.androidgameengine2d.game.Field;
 import com.lucek.androidgameengine2d.game.Map;
 import com.lucek.androidgameengine2d.gameplay.Game;
 

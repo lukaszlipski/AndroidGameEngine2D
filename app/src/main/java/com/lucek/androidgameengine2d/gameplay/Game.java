@@ -155,7 +155,8 @@ public class Game{
 
     private void ApplyMove(Point move){
         boardState[move.x][move.y]=currentPlayer.GetColour();
-        graphics.setField(move.x,move.y,currentPlayer.GetColour());
+        if(graphics!=null)
+            graphics.setField(move.x,move.y,currentPlayer.GetColour());
     }
 
     private void NextPlayer(){
@@ -171,7 +172,7 @@ public class Game{
 
     public long GetCurrentTime()
     {
-        return window.getCurrentTimeMS();
+        return (window==null)?window.getCurrentTimeMS():0;
     }
 
 }
