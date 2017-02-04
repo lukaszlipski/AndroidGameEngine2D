@@ -45,7 +45,7 @@ public class Main {
 
         m_FirstWindowOpen = true;
         gameIsInProgress = true;
-        gameInstance = new Game(new RandomMoveAI(1000), new WBMBAlgorithm(5000), map,m_Window);
+        gameInstance = new Game(new RandomMoveAI(1000), new RandomMoveAI(5000), map,m_Window);
     }
 
     public void OnWindowChange(){
