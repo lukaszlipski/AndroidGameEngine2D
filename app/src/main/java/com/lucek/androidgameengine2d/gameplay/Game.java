@@ -66,6 +66,7 @@ public class Game{
 
     public Game(AbstractPlayerController player1, Field player1colour, AbstractPlayerController player2, Field player2colour, Field[][] boardState) {
         this.player1=player1.setGameInstance(this).setColour(player1colour);
+        currentPlayer=player1;
         this.player2=player2.setGameInstance(this).setColour(player2colour);
 
         this.boardState=boardState;
@@ -81,7 +82,12 @@ public class Game{
         return returnValue;
     }
 
-    public boolean IsMoveValid(Point p){
+    public boolean IsMoveValid(Point p)
+    {
+        return IsMoveValid(p,currentPlayer.GetColour());
+    }
+
+    public boolean IsMoveValid(Point p, Field colour){
         //does it fit the board?
         if(! (p.x<boardState.length && p.y<boardState[0].length && p.x>=0 && p.y>=0) ){
             return false;
@@ -93,7 +99,7 @@ public class Game{
 
         //will all groups have at least one liberty after this move?
         Field[][] copyBoard=GetBoardState();
-        copyBoard[p.x][p.y]=currentPlayer.GetColour();
+        copyBoard[p.x][p.y]=colour;
         Group[] groups = Group.FindAllGroups(copyBoard);
         for (Group group:groups) {
             if(group.HasLiberty(copyBoard)==false) return false;

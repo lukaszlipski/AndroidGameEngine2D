@@ -6,6 +6,7 @@ import android.util.Log;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.controllers.RandomMoveAI;
 
+import com.lucek.androidgameengine2d.controllers.WBMBAlgorithm;
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
@@ -44,7 +45,7 @@ public class Main {
 
         m_FirstWindowOpen = true;
         gameIsInProgress = true;
-        gameInstance = new Game(new RandomMoveAI(1000), new HumanPlayerController(1000), map,m_Window);
+        gameInstance = new Game(new RandomMoveAI(1000), new WBMBAlgorithm(5000), map,m_Window);
     }
 
     public void OnWindowChange(){

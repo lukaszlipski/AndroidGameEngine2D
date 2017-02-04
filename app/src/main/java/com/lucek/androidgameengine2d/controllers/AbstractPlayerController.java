@@ -64,6 +64,7 @@ public abstract class AbstractPlayerController {
     {
         return _gameInstance.IsMoveValid(point);
     }
+    protected boolean IsMoveValid(Point point, Field colour){return _gameInstance.IsMoveValid(point,colour);}
 
     /*
         Functions outside of AbstractPlayerController that may be found useful:
