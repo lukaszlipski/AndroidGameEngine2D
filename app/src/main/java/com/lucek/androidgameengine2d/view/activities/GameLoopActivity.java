@@ -39,16 +39,7 @@ public class GameLoopActivity extends BaseActivity {
 
     @Subscribe
     public void playerTurnEvent(PlayerTurnEvent event) {
-        if (PreferencesManager.NoGo.getPlayer1().equals(PlayerTypes.Types.HUMAN.name) || PreferencesManager.NoGo.getPlayer2().equals(PlayerTypes.Types.HUMAN.name)) {
-            currentTurnText.setText(String.format(getString(R.string.player_turn_text), getString(event.currentPlayerString)));
-            currentTurnDialog.setVisibility(View.VISIBLE);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    currentTurnDialog.setVisibility(View.GONE);
-                }
-            }, TimeUnit.SECONDS.toMillis(2));
-        }
+        currentTurnText.setText(String.format(getString(R.string.player_turn_text), getString(event.currentPlayerString)));
     }
 
     @Subscribe
