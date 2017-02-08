@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,8 +9,8 @@
     tools:context=".view.activities.GameLoopActivity">
 
     <fragment
-        android:name="com.lucek.androidgameengine2d.view.fragments.GameSurfaceFragment"
         android:id="@+id/gameloop_fragment"
+        android:name="com.lucek.androidgameengine2d.view.fragments.GameSurfaceFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -17,9 +18,10 @@
         android:id="@+id/current_turn_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="visible"
-        android:padding="5dp">
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:visibility="gone">
 
         <ImageView
             style="@style/MainMenuImage"
@@ -28,10 +30,9 @@
             android:src="@drawable/dialog_turn_background" />
 
         <TextView
+            android:id="@+id/current_turn_text"
             style="@style/MainMenuText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/current_turn_text"
-            android:text="@string/player_turn_text" />
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.lucek.androidgameengine2d.view.activities;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v4.util.TimeUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 import com.lucek.androidgameengine2d.R;
 import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
 import com.lucek.androidgameengine2d.eventBus.events.PlayerTurnEvent;
+import com.lucek.androidgameengine2d.game.PlayerTypes;
+import com.lucek.androidgameengine2d.storage.PreferencesManager;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -36,21 +37,18 @@ public class GameLoopActivity extends BaseActivity {
         return R.layout.activity_game_loop;
     }
 
-    @Override
-    protected void afterBind() {
-
-    }
-
     @Subscribe
     public void playerTurnEvent(PlayerTurnEvent event) {
-        currentTurnText.setText(String.format(getString(R.string.player_turn_text), getString(event.currentPlayerString)));
-        currentTurnDialog.setVisibility(View.VISIBLE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                currentTurnDialog.setVisibility(View.GONE);
-            }
-        }, TimeUnit.SECONDS.toMillis(2));
+        if (PreferencesManager.NoGo.getPlayer1().equals(PlayerTypes.Types.HUMAN.name) || PreferencesManager.NoGo.getPlayer2().equals(PlayerTypes.Types.HUMAN.name)) {
+            currentTurnText.setText(String.format(getString(R.string.player_turn_text), getString(event.currentPlayerString)));
+            currentTurnDialog.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    currentTurnDialog.setVisibility(View.GONE);
+                }
+            }, TimeUnit.SECONDS.toMillis(2));
+        }
     }
 
     @Subscribe

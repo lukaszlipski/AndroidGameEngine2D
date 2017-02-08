@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerTypes {
-    private enum Types {
+    public enum Types {
         HUMAN(0, R.string.human_dropdown_value),
         SIMPLE_AI(1, R.string.simple_ai_dropdown_value);
 
