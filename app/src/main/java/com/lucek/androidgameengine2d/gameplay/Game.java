@@ -44,8 +44,8 @@ public class Game {
 
     public Game(AbstractPlayerController player1, AbstractPlayerController player2, Map graphics, Window window) {
         //set up players
-        this.player1 = player1.setGameInstance(this).setColour(Field.WHITE);
-        this.player2 = player2.setGameInstance(this).setColour(Field.BLACK);
+        this.player1 = player1.setGameInstance(this).setColour(Field.BLACK);
+        this.player2 = player2.setGameInstance(this).setColour(Field.WHITE);
         currentPlayer = player1;
         HumanPlayerController.playerInputStream.clear();    //bug fix for automatic player input after minimising app
 

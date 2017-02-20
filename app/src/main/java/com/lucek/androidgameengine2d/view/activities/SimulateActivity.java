@@ -23,7 +23,8 @@ public class SimulateActivity extends BaseActivity {
     @BindView(R.id.score)
     TextView score;
 
-    private int white = 0, black = 0;
+    private int black = 0, white = 0;
+    private String blackName, whiteName;
     private int gameCount;
 
     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -41,7 +42,10 @@ public class SimulateActivity extends BaseActivity {
     @Override
     protected void afterBind() {
         gameCount = PreferencesManager.NoGo.getGamesCount();
-        score.setText(String.format(getString(R.string.simulate_score_holder), white, black));
+        blackName = PreferencesManager.NoGo.getPlayer1();
+        whiteName = PreferencesManager.NoGo.getPlayer2();
+
+        score.setText(String.format(getString(R.string.simulate_score_holder), blackName, black, white, whiteName));
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.simulate_container, new SimulateSurfaceFragment());
         ft.commit();
@@ -52,7 +56,7 @@ public class SimulateActivity extends BaseActivity {
         if (event.winningColor == Field.WHITE) white++;
         else black++;
 
-        score.setText(String.format(getString(R.string.simulate_score_holder), white, black));
+        score.setText(String.format(getString(R.string.simulate_score_holder), blackName, black, white, whiteName));
 
         if (black + white < gameCount) {
             ft = getSupportFragmentManager().beginTransaction();
