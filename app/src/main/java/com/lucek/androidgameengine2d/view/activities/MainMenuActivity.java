@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.support.transition.Fade;
-import android.support.transition.TransitionManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -82,8 +79,8 @@ public class MainMenuActivity extends BaseActivity {
         savePlayerState();
     }
 
-    private void checkTournamentState(){
-        if (isTournamentModeTurnedOn){
+    private void checkTournamentState() {
+        if (isTournamentModeTurnedOn) {
             tilTurnTime.setVisibility(View.VISIBLE);
             tilGameCount.setVisibility(View.VISIBLE);
         } else {
@@ -134,7 +131,11 @@ public class MainMenuActivity extends BaseActivity {
             case R.id.btn_start:
                 savePlayerState();
 
-                Intent intent = new Intent(this, GameLoopActivity.class);
+                Intent intent;
+                if (PreferencesManager.NoGo.getAlgorithmTournament())
+                    intent = new Intent(this, SimulateActivity.class);
+                else
+                    intent = new Intent(this, GameLoopActivity.class);
                 startActivity(intent);
                 break;
 

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activities.GameLoopActivity"  android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.activities.SimulateActivity"  android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>
