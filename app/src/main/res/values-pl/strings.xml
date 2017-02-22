@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">No-Go Game</string>
+    <string name="algorithm_tournament_off_text">Tryb turniejowy wyłączony</string>
+    <string name="algorithm_tournament_on_text">Tryb turniejowy włączony</string>
+    <string name="exit_game_menu_text">Zamknij</string>
+    <string name="game_is_over_dialog_title">Gra zakończona</string>
+    <string name="human_dropdown_value">Gracz</string>
+    <string name="negative_dialog">Nie</string>
+    <string name="new_game_menu_text">Nowa gra</string>
+    <string name="play_game_menu_text">Graj</string>
+    <string name="player_1_label">GRACZ1</string>
+    <string name="player_2_label">GRACZ2</string>
+    <string name="player_turn_text">Ruch gracza: %s</string>
+    <string name="positive_dialog">Tak</string>
+    <string name="simple_ai_dropdown_value">Prosty komputer</string>
+    <string name="simulation_games_label">Ilość gier symulacji</string>
+    <string name="start_game_menu_text">Rozpocznij</string>
+    <string name="stop_game_dialog_text">Jesteś pewny, że chcesz zatrzymać grę?</string>
+    <string name="stop_game_dialog_title">Zatrzymaj grę</string>
+    <string name="time_for_turn_label">Czas na ruch (w ms)</string>
+    <string name="winning_dialog_text">Gracz %s wygrał tą grę. Chcesz zagrać ponownie?</string>
+</resources>
