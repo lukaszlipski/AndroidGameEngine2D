@@ -176,7 +176,7 @@ public class AI_KosmaMarzec extends AbstractPlayerController
             //if((GetRemainingTimeMS() < 0))
             //Log.d("moves count: ", "" + possiblePoints.size());
 
-            //nie pamietam czy to jest potrzebne poza Extra Cutem. Chyba mo¿na wyjebac ale nie jestem pewien xd
+            //nie pamietam czy to jest potrzebne poza Extra Cutem. Chyba mo?na wyjebac ale nie jestem pewien xd
             if(possibleSize > possiblePoints.size())
             {
                 possibleSize = possiblePoints.size();
@@ -272,7 +272,7 @@ public class AI_KosmaMarzec extends AbstractPlayerController
                 //Log.d("Time after sim", GetRemainingTimeMS() + "");
                 int currentMoveValue = ourPossibleMoves.size() - enemyPossibleMoves.size();
 
-                /////////Tu trzeba zupowaæ chosen move alpha-cos
+                /////////Tu trzeba zupowa? chosen move alpha-cos
                 for (Point move:chosenMoves)
                 {
                     UpdateMoveValue(move, currentMoveValue);
@@ -382,25 +382,25 @@ public class AI_KosmaMarzec extends AbstractPlayerController
     {
         if(color == GetColour())
         {
-            //zmiejsza wartoœæ na przyleg³ych do naszego
+            //zmiejsza warto?? na przyleg?ych do naszego
             AddValueToValuesMapStraight(point, -1, 1);
 
-            //zmniejsza wartoœæ na oddalonych o 2 od naszego
+            //zmniejsza warto?? na oddalonych o 2 od naszego
             AddValueToValuesMapStraight(point, -2, 2);
             AddValueToValuesMapSlant(point, -2, 1);
         }
         else
         {
-            //zwiêksza wartoœæ na przyleg³ych do przeciwnika
+            //zwi?ksza warto?? na przyleg?ych do przeciwnika
             AddValueToValuesMapStraight(point, 1, 1);
 
-            //zmiejsza wartoœæ na oddalonych o 2 od przeciwnika
+            //zmiejsza warto?? na oddalonych o 2 od przeciwnika
             AddValueToValuesMapStraight(point, -1, 2);
             AddValueToValuesMapSlant(point, -1, 1);
         }
     }
 
-    void CutPossibleMoves(int untrust) //im mniejszy untrust tym wiêcej ucina. Dla 0 ucina wszystkie mniejsze od maksymalnej wartosci
+    void CutPossibleMoves(int untrust) //im mniejszy untrust tym wi?cej ucina. Dla 0 ucina wszystkie mniejsze od maksymalnej wartosci
     {
         int valueMax = -1000;
         int valueSecondMax = -1000;
@@ -420,7 +420,7 @@ public class AI_KosmaMarzec extends AbstractPlayerController
 
         //Log.d("moves befor", possiblePoints.size() + "");
 
-        //usuniêcie ruchów o wartoœci mniejszej od maksymalnej o wiêcej ni¿ parametr nieufnoœci untrust
+        //usuni?cie ruch?w o warto?ci mniejszej od maksymalnej o wi?cej ni? parametr nieufno?ci untrust
         for(int i = 0; i < possiblePoints.size(); i++)
         {
             if(valuesMap[possiblePoints.get(i).x][possiblePoints.get(i).y] < valueSecondMax - untrust)

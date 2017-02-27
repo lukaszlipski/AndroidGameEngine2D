@@ -37,12 +37,12 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
         GLES20.glClearColor(63.0f/255,81.0f/255,181.0f/255,1);
         window = new Window();
 
-        m_BgCircles = new BackGroundCircle[4];
+//        m_BgCircles = new BackGroundCircle[4];
 
-        m_BgCircles[0] = new BackGroundCircle(window.getHeight()/10, window.getHeight()/10, 1,10, MaterialColors.DarkBlue(),(float)Math.random()/2,m_Shader,window);
-        m_BgCircles[1] = new BackGroundCircle(window.getHeight()/2, window.getHeight()/2, 1,10, MaterialColors.Blue(),(float)Math.random()/2,m_Shader,window);
-        m_BgCircles[2] = new BackGroundCircle(window.getHeight()/3, window.getHeight()/3, 1,10, MaterialColors.DarkBlue(),(float)Math.random()/2,m_Shader,window);
-        m_BgCircles[3] = new BackGroundCircle(window.getHeight()/3, window.getHeight()/3, 1,10, MaterialColors.Blue(),(float)Math.random()/2,m_Shader,window);
+//        m_BgCircles[0] = new BackGroundCircle(window.getHeight()/10, window.getHeight()/10, 1,10, MaterialColors.DarkBlue(),(float)Math.random()/2,m_Shader,window);
+//        m_BgCircles[1] = new BackGroundCircle(window.getHeight()/2, window.getHeight()/2, 1,10, MaterialColors.Blue(),(float)Math.random()/2,m_Shader,window);
+//        m_BgCircles[2] = new BackGroundCircle(window.getHeight()/3, window.getHeight()/3, 1,10, MaterialColors.DarkBlue(),(float)Math.random()/2,m_Shader,window);
+//        m_BgCircles[3] = new BackGroundCircle(window.getHeight()/3, window.getHeight()/3, 1,10, MaterialColors.Blue(),(float)Math.random()/2,m_Shader,window);
 
 
         main = new Main(window,m_Shader);
@@ -58,10 +58,10 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
 
         this.window.getCamera().setProjectionMatrix(false,width,height);
 
-        m_BgCircles[0].update(window,window.getWidth()/3,window.getWidth()/1);
-        m_BgCircles[1].update(window,window.getWidth()/1,window.getWidth()/1);
-        m_BgCircles[2].update(window,window.getWidth()/2,window.getWidth()/2);
-        m_BgCircles[3].update(window,window.getWidth()/3,window.getWidth()/3);
+//        m_BgCircles[0].update(window,window.getWidth()/3,window.getWidth()/1);
+//        m_BgCircles[1].update(window,window.getWidth()/1,window.getWidth()/1);
+//        m_BgCircles[2].update(window,window.getWidth()/2,window.getWidth()/2);
+//        m_BgCircles[3].update(window,window.getWidth()/3,window.getWidth()/3);
 
         main.OnWindowChange();
     }
@@ -74,9 +74,9 @@ public class SimpleRenderer implements GLSurfaceView.Renderer {
         m_DeltaTime = currentTime - m_LastFrameTime;
         m_LastFrameTime = currentTime;
 
-        for(int i=0;i<m_BgCircles.length;i++) {
-            m_BgCircles[i].draw(m_DeltaTime / 1000.0f);
-        }
+//        for(int i=0;i<m_BgCircles.length;i++) {
+//            m_BgCircles[i].draw(m_DeltaTime / 1000.0f);
+//        }
 
         main.Update(m_DeltaTime/1000.0f);
     }

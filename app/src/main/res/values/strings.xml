@@ -19,5 +19,7 @@
     <string name="new_game_menu_text">New game</string>
     <string name="human_dropdown_value">Human</string>
     <string name="simple_ai_dropdown_value">Simple-AI</string>
+    <string name="kosmamarzec_dropdown_value">Kosma-Marzec Algorithm</string>
+    <string name="borkowskibartoszek_dropdown_value">Borkowski-Bartoszek Algorithm</string>
     <string name="simulate_score_holder" formatted="false" translatable="false">%s %d : %d %s</string>
 </resources>

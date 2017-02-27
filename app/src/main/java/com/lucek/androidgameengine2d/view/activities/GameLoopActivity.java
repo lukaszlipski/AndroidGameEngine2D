@@ -1,7 +1,6 @@
 package com.lucek.androidgameengine2d.view.activities;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,12 +8,8 @@ import android.widget.TextView;
 import com.lucek.androidgameengine2d.R;
 import com.lucek.androidgameengine2d.eventBus.events.GameOverEvent;
 import com.lucek.androidgameengine2d.eventBus.events.PlayerTurnEvent;
-import com.lucek.androidgameengine2d.game.PlayerTypes;
-import com.lucek.androidgameengine2d.storage.PreferencesManager;
 
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 

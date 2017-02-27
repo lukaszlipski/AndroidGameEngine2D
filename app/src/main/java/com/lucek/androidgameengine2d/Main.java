@@ -3,9 +3,11 @@ package com.lucek.androidgameengine2d;
 
 import android.util.Log;
 
+import com.lucek.androidgameengine2d.controllers.AI_KosmaMarzec;
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.controllers.RandomMoveAI;
+import com.lucek.androidgameengine2d.controllers.WBMBAlgorithm;
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
 import com.lucek.androidgameengine2d.core.graphics.Shader;
 import com.lucek.androidgameengine2d.core.graphics.Window;
@@ -89,6 +91,10 @@ public class Main {
         switch (player) {
             case HUMAN:
                 return new HumanPlayerController(timeForTurn);
+            case KOSMA_MARZEC:
+                return new AI_KosmaMarzec(timeForTurn);
+            case BORKOWSKI_BARTOSZEK:
+                return new WBMBAlgorithm(timeForTurn);
             case SIMPLE_AI:
             default:
                 return new RandomMoveAI(timeForTurn);

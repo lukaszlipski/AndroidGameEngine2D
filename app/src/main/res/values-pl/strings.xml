@@ -20,4 +20,6 @@
     <string name="stop_game_dialog_title">Zatrzymaj grę</string>
     <string name="time_for_turn_label">Czas na ruch (w ms)</string>
     <string name="winning_dialog_text">Gracz %s wygrał tą grę. Chcesz zagrać ponownie?</string>
+    <string name="borkowskibartoszek_dropdown_value">Borkowski-Bartoszek Algorytm</string>
+    <string name="kosmamarzec_dropdown_value">Kosma-Marzec Algorytm</string>
 </resources>
