@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lucek.androidgameengine2d.controllers.AI_KosmaMarzec;
 import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
+import com.lucek.androidgameengine2d.controllers.BGKS_AI;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
 import com.lucek.androidgameengine2d.controllers.RandomMoveAI;
 import com.lucek.androidgameengine2d.controllers.WBMBAlgorithm;
@@ -95,6 +96,8 @@ public class Main {
                 return new AI_KosmaMarzec(timeForTurn);
             case BORKOWSKI_BARTOSZEK:
                 return new WBMBAlgorithm(timeForTurn);
+            case BGKS:
+                return new BGKS_AI(timeForTurn);
             case SIMPLE_AI:
             default:
                 return new RandomMoveAI(timeForTurn);

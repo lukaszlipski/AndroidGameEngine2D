@@ -22,4 +22,5 @@
     <string name="winning_dialog_text">Gracz %s wygrał tą grę. Chcesz zagrać ponownie?</string>
     <string name="borkowskibartoszek_dropdown_value">Borkowski-Bartoszek Algorytm</string>
     <string name="kosmamarzec_dropdown_value">Kosma-Marzec Algorytm</string>
+    <string name="bgks_dropdown_value">Bednarczyk-Gorczyca-Kasprusz-Szubert Algorytm</string>
 </resources>

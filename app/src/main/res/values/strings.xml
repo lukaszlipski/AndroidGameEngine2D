@@ -21,5 +21,6 @@
     <string name="simple_ai_dropdown_value">Simple-AI</string>
     <string name="kosmamarzec_dropdown_value">Kosma-Marzec Algorithm</string>
     <string name="borkowskibartoszek_dropdown_value">Borkowski-Bartoszek Algorithm</string>
+    <string name="bgks_dropdown_value">Bednarczyk-Gorczyca-Kasprusz-Szubert Algorithm</string>
     <string name="simulate_score_holder" formatted="false" translatable="false">%s %d : %d %s</string>
 </resources>

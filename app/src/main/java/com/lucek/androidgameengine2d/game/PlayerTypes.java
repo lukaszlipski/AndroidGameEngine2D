@@ -11,7 +11,8 @@ public class PlayerTypes {
         HUMAN(0, R.string.human_dropdown_value),
         SIMPLE_AI(1, R.string.simple_ai_dropdown_value),
         KOSMA_MARZEC(2, R.string.kosmamarzec_dropdown_value),
-        BORKOWSKI_BARTOSZEK(3, R.string.borkowskibartoszek_dropdown_value);
+        BORKOWSKI_BARTOSZEK(3, R.string.borkowskibartoszek_dropdown_value),
+        BGKS(3, R.string.bgks_dropdown_value);
 
         public int position;
         public String name;
