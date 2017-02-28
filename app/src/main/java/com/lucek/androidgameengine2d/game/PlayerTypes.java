@@ -13,7 +13,8 @@ public class PlayerTypes {
         KOSMA_MARZEC(2, R.string.kosmamarzec_dropdown_value),
         BORKOWSKI_BARTOSZEK(3, R.string.borkowskibartoszek_dropdown_value),
         BGKS(4, R.string.bgks_dropdown_value),
-        CIESLAR(5, R.string.cieslar_dropdown_value);
+        CIESLAR(5, R.string.cieslar_dropdown_value),
+        JS(6, R.string.js_dropdown_value);
 
         public int position;
         public String name;

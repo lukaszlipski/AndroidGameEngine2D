@@ -24,4 +24,5 @@
     <string name="kosmamarzec_dropdown_value">Kosma-Marzec Algorytm</string>
     <string name="bgks_dropdown_value">Bednarczyk-Gorczyca-Kasprusz-Szubert Algorytm</string>
     <string name="cieslar_dropdown_value">Cieślar Algorytm</string>
+    <string name="js_dropdown_value">Juroszek Semkulych Algorytm</string>
 </resources>

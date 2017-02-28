@@ -23,5 +23,6 @@
     <string name="borkowskibartoszek_dropdown_value">Borkowski-Bartoszek Algorithm</string>
     <string name="bgks_dropdown_value">Bednarczyk-Gorczyca-Kasprusz-Szubert Algorithm</string>
     <string name="cieslar_dropdown_value">Cieslar Algorithm</string>
+    <string name="js_dropdown_value">Juroszek Semkulych Algorithm</string>
     <string name="simulate_score_holder" formatted="false" translatable="false">%s %d : %d %s</string>
 </resources>

@@ -8,6 +8,7 @@ import com.lucek.androidgameengine2d.controllers.AbstractPlayerController;
 import com.lucek.androidgameengine2d.controllers.BGKS_AI;
 import com.lucek.androidgameengine2d.controllers.CIESLAR_AI;
 import com.lucek.androidgameengine2d.controllers.HumanPlayerController;
+import com.lucek.androidgameengine2d.controllers.JuroszekSemkulychAI;
 import com.lucek.androidgameengine2d.controllers.RandomMoveAI;
 import com.lucek.androidgameengine2d.controllers.WBMBAlgorithm;
 import com.lucek.androidgameengine2d.core.extra.MaterialColors;
@@ -101,6 +102,8 @@ public class Main {
                 return new BGKS_AI(timeForTurn);
             case CIESLAR:
                 return new CIESLAR_AI(timeForTurn);
+            case JS:
+                return new JuroszekSemkulychAI(timeForTurn);
             case SIMPLE_AI:
             default:
                 return new RandomMoveAI(timeForTurn);
